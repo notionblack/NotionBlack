@@ -1,0 +1,17 @@
+﻿
+C:\Users\USER\.gemini\antigravity\scratch\NotionBlack\src\components\sections\ProjectEstimator.tsx
+  92:9  error  Error: This value cannot be modified
+
+Modifying a variable defined outside a component or hook is not allowed. Consider using an effect.
+
+C:\Users\USER\.gemini\antigravity\scratch\NotionBlack\src\components\sections\ProjectEstimator.tsx:92:9
+  90 | Total Estimated Investment: R ${costs.total.toLocaleString()}
+  91 | `);
+> 92 |         window.location.href = `mailto:hello@notionblack.com?subject=${subject}&body=${body}`;
+     |         ^^^^^^^^^^^^^^^ value cannot be modified
+  93 |     };
+  94 |
+  95 |     return (  react-hooks/immutability
+
+Ô£û 1 problem (1 error, 0 warnings)
+

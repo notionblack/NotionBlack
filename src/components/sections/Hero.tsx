@@ -45,13 +45,13 @@ export function Hero() {
                             className="flex flex-col sm:flex-row gap-6 items-start sm:items-center"
                         >
                             <Link
-                                href="/projects"
+                                href="/#projects"
                                 className="inline-flex h-14 items-center justify-center rounded-none bg-green-500 px-8 text-sm font-semibold text-background transition-colors hover:bg-green-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                             >
                                 View Projects
                             </Link>
                             <Link
-                                href="/contact"
+                                href="/#contact"
                                 className="group inline-flex items-center text-sm font-semibold text-white/90 hover:text-white transition-colors"
                             >
                                 Let&apos;s Talk

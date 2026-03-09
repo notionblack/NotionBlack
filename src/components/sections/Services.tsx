@@ -54,7 +54,7 @@ export function Services() {
                             We believe in a holistic approach to design. By blending rigorous architectural structure with responsive digital frameworks, we produce cohesive brand experiences.
                         </p>
                         <Link
-                            href="/services"
+                            href="/#services"
                             className="inline-flex h-12 items-center justify-center rounded-none border border-green-500 text-green-500 bg-transparent px-8 text-sm font-semibold transition-colors hover:bg-green-500 hover:text-background focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                         >
                             Explore Services
@@ -92,7 +92,7 @@ export function Services() {
                                                     {item.description}
                                                 </p>
                                                 <Link
-                                                    href="/services"
+                                                    href="/#services"
                                                     className="group inline-flex items-center text-sm font-semibold text-green-500 hover:text-green-400 transition-colors"
                                                 >
                                                     Learn more

@@ -30,8 +30,8 @@ export function Navbar() {
     return (
         <header
             className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled
-                    ? "bg-background/80 backdrop-blur-md border-b border-white/10 shadow-sm"
-                    : "bg-transparent"
+                ? "bg-background/80 backdrop-blur-md border-b border-white/10 shadow-sm"
+                : "bg-transparent"
                 }`}
         >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -64,7 +64,7 @@ export function Navbar() {
                             </Link>
                         ))}
                         <Button asChild className="bg-green-600 hover:bg-green-700 text-white rounded-full px-6">
-                            <Link href="/#about">Request a quote</Link>
+                            <Link href="/#contact">Request a quote</Link>
                         </Button>
                     </nav>
 
@@ -102,7 +102,7 @@ export function Navbar() {
                         ))}
                         <div className="pt-4 px-3">
                             <Button asChild className="w-full bg-green-600 hover:bg-green-700 text-white">
-                                <Link href="/#about" onClick={() => setMobileMenuOpen(false)}>
+                                <Link href="/#contact" onClick={() => setMobileMenuOpen(false)}>
                                     Request a quote
                                 </Link>
                             </Button>

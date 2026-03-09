@@ -101,7 +101,7 @@ export function FeaturedProjects() {
                     className="mt-16 text-center"
                 >
                     <Link
-                        href="/projects"
+                        href="/#projects"
                         className="inline-flex h-14 items-center justify-center rounded-none bg-green-500 px-8 text-sm font-semibold text-background transition-colors hover:bg-green-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                     >
                         View Full Portfolio
