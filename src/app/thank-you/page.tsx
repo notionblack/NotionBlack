@@ -27,36 +27,112 @@ export default function ThankYouPage() {
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-background relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-green-500/10 rounded-full blur-[120px] pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px] pointer-events-none" />
+            {/* Ambient Background Elements */}
+            <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-green-500/5 rounded-full blur-[120px] pointer-events-none animate-pulse" />
+            <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-white/5 rounded-full blur-[120px] pointer-events-none" />
 
-            <div className="container mx-auto px-4 relative z-10 text-center">
+            {/* Grid Pattern Overlay */}
+            <div className="absolute inset-0 bg-[#0a0a0a] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] opacity-5 pointer-events-none" />
+
+            <div className="container mx-auto px-4 relative z-10">
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="max-w-xl mx-auto bg-card border border-white/10 p-12 rounded-2xl shadow-2xl backdrop-blur-xl"
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="max-w-2xl mx-auto"
                 >
-                    <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-8">
-                        <CheckCircle className="w-10 h-10 text-green-500" />
-                    </div>
+                    <div className="bg-card border border-white/10 rounded-3xl p-8 md:p-16 shadow-2xl backdrop-blur-3xl relative overflow-hidden">
+                        {/* Decorative Gradient Line */}
+                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent" />
 
-                    <h1 className="text-4xl font-bold text-white mb-4">Thank You!</h1>
-                    <p className="text-white/70 text-lg mb-8">
-                        Your request has been submitted successfully. Our team will review your details and get back to you shortly.
-                    </p>
+                        <div className="flex flex-col items-center text-center">
+                            {/* Animated Success Icon */}
+                            <motion.div
+                                initial={{ scale: 0, rotate: -180 }}
+                                animate={{ scale: 1, rotate: 0 }}
+                                transition={{ type: "spring", damping: 12, stiffness: 100, delay: 0.2 }}
+                                className="w-24 h-24 bg-green-500/10 rounded-full flex items-center justify-center mb-10 relative"
+                            >
+                                <div className="absolute inset-0 rounded-full border-2 border-green-500/20 animate-ping" />
+                                <CheckCircle className="w-12 h-12 text-green-500" />
+                            </motion.div>
 
-                    <div className="space-y-6">
-                        <div className="text-sm text-white/40 font-mono">
-                            Redirecting to home in <span className="text-green-500 font-bold">{countdown}</span> seconds...
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.4 }}
+                            >
+                                <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 tracking-tighter uppercase font-sans">
+                                    Mission <span className="text-green-500">Complete</span>
+                                </h1>
+                                <p className="text-white/70 text-lg md:text-xl font-light leading-relaxed mb-12 max-w-md mx-auto">
+                                    Your request has been securely transmitted. A Notion Black specialist will contact you shortly to discuss your vision.
+                                </p>
+                            </motion.div>
+
+                            {/* Countdown UI */}
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.6 }}
+                                className="mb-12 flex flex-col items-center"
+                            >
+                                <div className="relative w-16 h-16 flex items-center justify-center mb-4">
+                                    <svg className="w-full h-full -rotate-90">
+                                        <circle
+                                            cx="32"
+                                            cy="32"
+                                            r="28"
+                                            stroke="currentColor"
+                                            strokeWidth="4"
+                                            fill="transparent"
+                                            className="text-white/5"
+                                        />
+                                        <motion.circle
+                                            cx="32"
+                                            cy="32"
+                                            r="28"
+                                            stroke="currentColor"
+                                            strokeWidth="4"
+                                            fill="transparent"
+                                            strokeDasharray="175.93"
+                                            initial={{ strokeDashoffset: 0 }}
+                                            animate={{ strokeDashoffset: 175.93 * (1 - countdown / 10) }}
+                                            transition={{ duration: 1, ease: "linear" }}
+                                            className="text-green-500"
+                                            strokeLinecap="round"
+                                        />
+                                    </svg>
+                                    <span className="absolute text-xl font-bold text-white font-mono">{countdown}</span>
+                                </div>
+                                <p className="text-xs uppercase tracking-[0.3em] text-white/30 font-semibold">
+                                    Auto-returning to command post
+                                </p>
+                            </motion.div>
+
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.8 }}
+                                className="w-full max-w-xs"
+                            >
+                                <Link
+                                    href="/"
+                                    className="group relative inline-flex w-full items-center justify-center overflow-hidden h-14 bg-green-500 px-8 text-sm font-bold text-background transition-all hover:bg-green-400 focus-visible:outline-none rounded-none"
+                                >
+                                    <span className="relative z-10 flex items-center gap-2">
+                                        RETURN HOME <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                                    </span>
+                                </Link>
+
+                                <Link
+                                    href="/#projects"
+                                    className="block mt-6 text-white/40 hover:text-white transition-colors text-xs font-semibold uppercase tracking-widest"
+                                >
+                                    View our work while you wait
+                                </Link>
+                            </motion.div>
                         </div>
-
-                        <Link
-                            href="/"
-                            className="inline-flex h-12 items-center justify-center rounded-none bg-green-500 px-8 text-sm font-semibold text-background transition-colors hover:bg-green-400"
-                        >
-                            Return Home Now <ArrowRight className="ml-2 w-4 h-4" />
-                        </Link>
                     </div>
                 </motion.div>
             </div>
