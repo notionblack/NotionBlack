@@ -4,7 +4,6 @@ import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Layout, Trees, BarChart, Video, X, Download, Printer, FileText } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
-import html2pdf from "html2pdf.js";
 import { Button } from "@/components/ui/button";
 import {
     Select,
@@ -78,8 +77,11 @@ export function ProjectEstimator() {
         window.print();
     };
 
-    const handleSavePDF = () => {
+    const handleSavePDF = async () => {
         if (!pdfRef.current) return;
+
+        // Dynamic import to avoid SSR issues
+        const html2pdf = (await import("html2pdf.js")).default;
 
         const element = pdfRef.current;
         const opt = {
