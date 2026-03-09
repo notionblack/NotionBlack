@@ -28,9 +28,9 @@ const disciplines = [
     },
     {
         id: "item-3",
-        title: "03. Digital Architecture",
-        subtitle: "Immersive Visualization",
-        description: "Bringing architectural structure to the web space. We build hyper-performant, semantic, and visually striking technical platforms.",
+        title: "03. Web Design/Development",
+        subtitle: "High-Performance Platforms",
+        description: "We craft bespoke digital experiences with a focus on user-centric design, responsive architecture, and cutting-edge web technologies.",
         image: "/images/project_digital.png"
     }
 ];

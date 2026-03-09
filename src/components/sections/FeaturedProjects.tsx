@@ -18,8 +18,8 @@ const featuredProjects = [
         link: "/projects",
     },
     {
-        title: "Vanguard Digital",
-        category: "Digital Architecture",
+        title: "Vanguard Web Development",
+        category: "Web Design/Development",
         image: "/images/project_digital.png",
         link: "/projects",
     },
