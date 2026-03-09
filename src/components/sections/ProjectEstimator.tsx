@@ -1,10 +1,11 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Layout, Trees, BarChart, Video, X, Download, Printer } from "lucide-react";
+import { Layout, Trees, BarChart, Video, Download } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 import {
     Select,
     SelectContent,
@@ -29,6 +30,7 @@ const INTERACTIVE_LEVELS = [
 ] as const;
 
 export function ProjectEstimator() {
+    const router = useRouter();
     const [projectType, setProjectType] = useState<ProjectTypeId>("residential");
     const [sqm, setSqm] = useState(100);
     const [addons, setAddons] = useState({
@@ -38,8 +40,6 @@ export function ProjectEstimator() {
         gameMode: false,
     });
     const [interactiveLevel, setInteractiveLevel] = useState<string>("none");
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const pdfRef = useRef<HTMLDivElement>(null);
 
     const calculateTotals = () => {
         const rate = PROJECT_TYPES.find(t => t.id === projectType)?.rate || 150;
@@ -70,11 +70,17 @@ export function ProjectEstimator() {
     const activeInteractiveLevel = INTERACTIVE_LEVELS.find(l => l.id === interactiveLevel);
 
     const handleDownloadRequest = () => {
-        setIsModalOpen(true);
-    };
+        const params = new URLSearchParams({
+            type: projectType,
+            sqm: sqm.toString(),
+            interior: addons.interior.toString(),
+            landscape: addons.landscape.toString(),
+            analysis: addons.analysis.toString(),
+            gameMode: addons.gameMode.toString(),
+            interactive: interactiveLevel,
+        });
 
-    const handlePrint = () => {
-        window.print();
+        router.push(`/quote?${params.toString()}`);
     };
 
     return (
@@ -286,123 +292,6 @@ export function ProjectEstimator() {
                     </div>
                 </div>
             </div>
-
-            {/* Quote Modal */}
-            <AnimatePresence>
-                {isModalOpen && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
-                    >
-                        <motion.div
-                            initial={{ scale: 0.9, y: 20 }}
-                            animate={{ scale: 1, y: 0 }}
-                            exit={{ scale: 0.9, y: 20 }}
-                            className="bg-white border border-zinc-200 w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl relative"
-                        >
-                            <button
-                                onClick={() => setIsModalOpen(false)}
-                                className="absolute top-4 right-4 text-zinc-400 hover:text-black transition-colors"
-                            >
-                                <X className="h-6 w-6" />
-                            </button>
-
-                            <div className="p-8 md:p-12 bg-white" ref={pdfRef} id="printable-quote">
-                                {/* PDF Content */}
-                                <div className="mb-8 flex justify-between items-start">
-                                    <div>
-                                        <h2 className="text-2xl font-bold text-black mb-1">Project Quote</h2>
-                                        <p className="text-zinc-500 text-sm font-mono">Notion Black Studio</p>
-                                    </div>
-                                    <div className="text-right">
-                                        <p className="text-zinc-400 text-xs uppercase tracking-widest mb-1">Date</p>
-                                        <p className="text-black text-sm font-medium">{new Date().toLocaleDateString()}</p>
-                                    </div>
-                                </div>
-
-                                <div className="space-y-6">
-                                    <div className="grid grid-cols-2 gap-8 py-6 border-y border-zinc-100">
-                                        <div>
-                                            <p className="text-zinc-400 text-xs uppercase tracking-widest mb-2">Project Type</p>
-                                            <p className="text-black font-medium">{PROJECT_TYPES.find(t => t.id === projectType)?.label}</p>
-                                        </div>
-                                        <div>
-                                            <p className="text-zinc-400 text-xs uppercase tracking-widest mb-2">Project Size</p>
-                                            <p className="text-black font-medium">{sqm} SQM</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="space-y-3">
-                                        <p className="text-zinc-400 text-xs uppercase tracking-widest">Investment Summary</p>
-                                        <div className="space-y-2">
-                                            <div className="flex justify-between text-sm">
-                                                <span className="text-zinc-600">Architectural Design Base</span>
-                                                <span className="text-black font-mono">R {costs.projectDesignCost.toLocaleString()}</span>
-                                            </div>
-                                            {addons.interior && (
-                                                <div className="flex justify-between text-sm">
-                                                    <span className="text-zinc-600">Interior Design Extension</span>
-                                                    <span className="text-black font-mono">R {costs.interiorCost.toLocaleString()}</span>
-                                                </div>
-                                            )}
-                                            {addons.landscape && (
-                                                <div className="flex justify-between text-sm">
-                                                    <span className="text-zinc-600">Landscaping Extension</span>
-                                                    <span className="text-black font-mono">R {costs.landscapingCost.toLocaleString()}</span>
-                                                </div>
-                                            )}
-                                            {costs.interactiveCost > 0 && activeInteractiveLevel && (
-                                                <div className="flex justify-between text-sm">
-                                                    <span className="text-zinc-600">Interactive Level: {activeInteractiveLevel.label.split('—')[0]}</span>
-                                                    <span className="text-black font-mono">R {costs.interactiveCost.toLocaleString()}</span>
-                                                </div>
-                                            )}
-                                            {addons.analysis && (
-                                                <div className="flex justify-between text-sm">
-                                                    <span className="text-zinc-600">Statistical Analysis</span>
-                                                    <span className="text-black font-mono">R {costs.analysisCost.toLocaleString()}</span>
-                                                </div>
-                                            )}
-                                            {addons.gameMode && (
-                                                <div className="flex justify-between text-sm">
-                                                    <span className="text-zinc-600">Game Mode Environment</span>
-                                                    <span className="text-black font-mono">R {costs.gameModeCost.toLocaleString()}</span>
-                                                </div>
-                                            )}
-                                        </div>
-                                    </div>
-
-                                    <div className="pt-6 border-t border-zinc-100 mt-8">
-                                        <div className="flex justify-between items-end">
-                                            <div>
-                                                <p className="text-zinc-400 text-xs uppercase tracking-widest mb-1">Total Estimated Investment</p>
-                                                <div className="text-3xl font-bold text-green-600">
-                                                    R {costs.total.toLocaleString()}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="mt-12 text-[10px] text-zinc-400 uppercase tracking-[0.2em] pt-8 text-center italic">
-                                        This quote is an automated estimate and subject to final review and site conditions.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="p-8 bg-zinc-50 border-t border-zinc-100 flex flex-col sm:flex-row gap-4">
-                                <Button
-                                    onClick={handlePrint}
-                                    className="w-full bg-green-500 hover:bg-green-600 text-white font-bold h-12"
-                                >
-                                    <Printer className="mr-2 h-4 w-4" /> Print Quote
-                                </Button>
-                            </div>
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
 
         </section>
     );
