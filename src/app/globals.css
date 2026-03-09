@@ -123,27 +123,3 @@
     @apply bg-background text-foreground;
   }
 }
-
-@media print {
-  body * {
-    visibility: hidden;
-  }
-  #printable-quote, #printable-quote * {
-    visibility: visible;
-  }
-  #printable-quote {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    margin: 0;
-    padding: 2rem !important;
-    border: none !important;
-    background: white !important;
-    color: black !important;
-  }
-  @page {
-    size: auto;
-    margin: 0mm;
-  }
-}
