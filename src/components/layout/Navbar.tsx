@@ -15,7 +15,10 @@ const navLinks = [
     { name: "Contact", href: "/#contact" },
 ];
 
+import { usePathname } from "next/navigation";
+
 export function Navbar() {
+    const pathname = usePathname();
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -26,6 +29,8 @@ export function Navbar() {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    if (pathname === "/quote") return null;
 
     return (
         <header

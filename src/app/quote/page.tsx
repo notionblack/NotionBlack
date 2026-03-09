@@ -1,10 +1,9 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { Printer, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { Suspense } from "react";
 
 const PROJECT_TYPES = [
@@ -22,6 +21,7 @@ const INTERACTIVE_LEVELS = [
 
 function QuoteContent() {
     const searchParams = useSearchParams();
+    const router = useRouter();
 
     const type = searchParams.get("type") || "residential";
     const sqm = parseInt(searchParams.get("sqm") || "100", 10);
@@ -64,15 +64,22 @@ function QuoteContent() {
         window.print();
     };
 
+    const handleBack = () => {
+        router.push("/#estimator");
+    };
+
     return (
         <div className="min-h-screen bg-zinc-50 py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto">
                 {/* Header Actions */}
                 <div className="flex justify-between items-center mb-12 no-print">
-                    <Link href="/#estimator" className="flex items-center text-zinc-500 hover:text-black transition-colors font-medium">
+                    <button
+                        onClick={handleBack}
+                        className="flex items-center text-zinc-500 hover:text-black transition-colors font-bold uppercase text-xs tracking-widest"
+                    >
                         <ArrowLeft className="mr-2 h-4 w-4" /> Back to Estimator
-                    </Link>
-                    <Button onClick={handlePrint} className="bg-green-600 hover:bg-green-700 text-white shadow-lg">
+                    </button>
+                    <Button onClick={handlePrint} className="bg-green-600 hover:bg-green-700 text-white shadow-lg rounded-none font-bold uppercase text-xs tracking-widest h-12 px-8">
                         <Printer className="mr-2 h-4 w-4" /> Print PDF
                     </Button>
                 </div>

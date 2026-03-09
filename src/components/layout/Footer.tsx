@@ -1,7 +1,13 @@
+"use client";
+
 import Link from "next/link";
 import { Facebook, Instagram, Twitter, Linkedin, MapPin, Phone, Mail } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export function Footer() {
+    const pathname = usePathname();
+    if (pathname === "/quote") return null;
+
     return (
         <footer className="bg-background pt-20 pb-10 border-t border-white/10">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
