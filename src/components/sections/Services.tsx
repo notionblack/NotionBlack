@@ -17,21 +17,21 @@ const disciplines = [
         title: "01. Architecture Design",
         subtitle: "Structural Precision",
         description: "We architect spaces prioritizing modern layouts, sustainable materials, and rigorous geometric precision to form functional masterpieces.",
-        image: "/images/home.jpg"
+        image: "/images/project_architecture.png"
     },
     {
         id: "item-2",
         title: "02. Interior Design",
         subtitle: "Elevated Comfort",
         description: "Creating immersive, high-end interior environments tailored to premium comfort, sensory balance, and sophisticated minimalism.",
-        image: "/images/img_4.jpg"
+        image: "/images/project_interior.png"
     },
     {
         id: "item-3",
-        title: "03. Web Design & Development",
-        subtitle: "Digital Architecture",
+        title: "03. Digital Architecture",
+        subtitle: "Immersive Visualization",
         description: "Bringing architectural structure to the web space. We build hyper-performant, semantic, and visually striking technical platforms.",
-        image: "/images/img_8.jpg"
+        image: "/images/project_digital.png"
     }
 ];
 

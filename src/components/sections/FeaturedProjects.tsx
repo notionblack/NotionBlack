@@ -8,19 +8,19 @@ const featuredProjects = [
     {
         title: "Zenith Pavilion",
         category: "Architecture",
-        image: "/images/home.jpg",
+        image: "/images/project_architecture.png",
         link: "/projects",
     },
     {
         title: "Neo Corporate",
         category: "Interior Design",
-        image: "/images/img_4.jpg",
+        image: "/images/project_interior.png",
         link: "/projects",
     },
     {
         title: "Vanguard Digital",
-        category: "Web Development",
-        image: "/images/img_6.jpg",
+        category: "Digital Architecture",
+        image: "/images/project_digital.png",
         link: "/projects",
     },
 ];

@@ -40,11 +40,11 @@ export function Navbar() {
                     <div className="flex-shrink-0">
                         <Link href="/" className="flex items-center gap-2">
                             <Image
-                                src="/images/profile_picture_blck-removebg-preview.png"
+                                src="/images/logo_new.png"
                                 alt="Notion Black logo"
                                 width={48}
                                 height={48}
-                                className="w-12 h-12 rounded-full ring-2 ring-white/10"
+                                className="w-12 h-12 object-contain"
                             />
                             <span className="text-xl font-bold tracking-tight text-white hidden sm:block">
                                 Notion Black

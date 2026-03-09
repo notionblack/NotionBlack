@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Layout, Trees, BarChart, Video } from "lucide-react";
+import { Layout, Trees, BarChart, Video, X, Download, Printer, FileText } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
+import html2pdf from "html2pdf.js";
 import { Button } from "@/components/ui/button";
 import {
     Select,
@@ -38,6 +39,8 @@ export function ProjectEstimator() {
         gameMode: false,
     });
     const [interactiveLevel, setInteractiveLevel] = useState<string>("none");
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const pdfRef = useRef<HTMLDivElement>(null);
 
     const calculateTotals = () => {
         const rate = PROJECT_TYPES.find(t => t.id === projectType)?.rate || 150;
@@ -67,22 +70,27 @@ export function ProjectEstimator() {
     const costs = calculateTotals();
     const activeInteractiveLevel = INTERACTIVE_LEVELS.find(l => l.id === interactiveLevel);
 
-    const handleSendQuote = () => {
-        const subject = encodeURIComponent("Quote Request from Estimator");
-        const body = encodeURIComponent(`Quote Request Details:
-Type: ${PROJECT_TYPES.find(t => t.id === projectType)?.label}
-Size: ${sqm} SQM
+    const handleDownloadRequest = () => {
+        setIsModalOpen(true);
+    };
 
-Project Design Cost: R ${costs.projectDesignCost.toLocaleString()}
-Interior Design: ${addons.interior ? "Yes (R " + costs.interiorCost.toLocaleString() + ")" : "No"}
-Landscaping: ${addons.landscape ? "Yes (R " + costs.landscapingCost.toLocaleString() + ")" : "No"}
-Interactive Level: ${activeInteractiveLevel?.label || "None"} ${costs.interactiveCost > 0 ? "(R " + costs.interactiveCost.toLocaleString() + ")" : ""}
-Analysis: ${addons.analysis ? "Yes (R " + costs.analysisCost.toLocaleString() + ")" : "No"}
-Game Mode: ${addons.gameMode ? "Yes (R " + costs.gameModeCost.toLocaleString() + ")" : "No"}
+    const handlePrint = () => {
+        window.print();
+    };
 
-Total Estimated Investment: R ${costs.total.toLocaleString()}
-`);
-        window.location.assign(`mailto:hello@notionblack.com?subject=${subject}&body=${body}`);
+    const handleSavePDF = () => {
+        if (!pdfRef.current) return;
+
+        const element = pdfRef.current;
+        const opt = {
+            margin: 1,
+            filename: `NotionBlack_Quote_${Date.now()}.pdf`,
+            image: { type: 'jpeg' as const, quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in' as const, format: 'letter' as const, orientation: 'portrait' as const }
+        };
+
+        html2pdf().set(opt).from(element).save();
     };
 
     return (
@@ -177,28 +185,28 @@ Total Estimated Investment: R ${costs.total.toLocaleString()}
                                         className={`flex items-center gap-2 py-2 px-4 rounded-full text-sm font-medium border transition-colors ${addons.interior ? "bg-white text-black border-white" : "bg-transparent text-white/70 border-white/20 hover:border-white/40"
                                             }`}
                                     >
-                                        <Layout className="w-4 h-4" /> Interior Design (30%)
+                                        <Layout className="w-4 h-4" /> Interior Design
                                     </button>
                                     <button
                                         onClick={() => setAddons((prev) => ({ ...prev, landscape: !prev.landscape }))}
                                         className={`flex items-center gap-2 py-2 px-4 rounded-full text-sm font-medium border transition-colors ${addons.landscape ? "bg-white text-black border-white" : "bg-transparent text-white/70 border-white/20 hover:border-white/40"
                                             }`}
                                     >
-                                        <Trees className="w-4 h-4" /> Landscaping (30%)
+                                        <Trees className="w-4 h-4" /> Landscaping
                                     </button>
                                     <button
                                         onClick={() => setAddons((prev) => ({ ...prev, analysis: !prev.analysis }))}
                                         className={`flex items-center gap-2 py-2 px-4 rounded-full text-sm font-medium border transition-colors ${addons.analysis ? "bg-white text-black border-white" : "bg-transparent text-white/70 border-white/20 hover:border-white/40"
                                             }`}
                                     >
-                                        <BarChart className="w-4 h-4" /> Analysis (25%)
+                                        <BarChart className="w-4 h-4" /> Analysis
                                     </button>
                                     <button
                                         onClick={() => setAddons((prev) => ({ ...prev, gameMode: !prev.gameMode }))}
                                         className={`flex items-center gap-2 py-2 px-4 rounded-full text-sm font-medium border transition-colors ${addons.gameMode ? "bg-white text-black border-white" : "bg-transparent text-white/70 border-white/20 hover:border-white/40"
                                             }`}
                                     >
-                                        <Video className="w-4 h-4" /> Game Mode (50%)
+                                        <Video className="w-4 h-4" /> Game Mode
                                     </button>
                                 </div>
                             </div>
@@ -284,16 +292,140 @@ Total Estimated Investment: R ${costs.total.toLocaleString()}
                             </div>
 
                             <Button
-                                onClick={handleSendQuote}
+                                onClick={handleDownloadRequest}
                                 size="lg"
                                 className="w-full h-14 bg-white text-black hover:bg-white/90 font-bold tracking-widest uppercase text-xs transition-colors"
                             >
-                                Send Quote Request
+                                <Download className="mr-2 h-4 w-4" /> Download
                             </Button>
                         </div>
                     </div>
                 </div>
             </div>
+
+            {/* Quote Modal */}
+            <AnimatePresence>
+                {isModalOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+                    >
+                        <motion.div
+                            initial={{ scale: 0.9, y: 20 }}
+                            animate={{ scale: 1, y: 0 }}
+                            exit={{ scale: 0.9, y: 20 }}
+                            className="bg-zinc-900 border border-white/10 w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl relative"
+                        >
+                            <button
+                                onClick={() => setIsModalOpen(false)}
+                                className="absolute top-4 right-4 text-white/50 hover:text-white transition-colors"
+                            >
+                                <X className="h-6 w-6" />
+                            </button>
+
+                            <div className="p-8 md:p-12" ref={pdfRef}>
+                                {/* PDF Content */}
+                                <div className="mb-8 flex justify-between items-start">
+                                    <div>
+                                        <h2 className="text-2xl font-bold text-white mb-1">Project Quote</h2>
+                                        <p className="text-white/40 text-sm font-mono">Notion Black Studio</p>
+                                    </div>
+                                    <div className="text-right">
+                                        <p className="text-white/40 text-xs uppercase tracking-widest mb-1">Date</p>
+                                        <p className="text-white text-sm font-medium">{new Date().toLocaleDateString()}</p>
+                                    </div>
+                                </div>
+
+                                <div className="space-y-6">
+                                    <div className="grid grid-cols-2 gap-8 py-6 border-y border-white/5">
+                                        <div>
+                                            <p className="text-white/40 text-xs uppercase tracking-widest mb-2">Project Type</p>
+                                            <p className="text-white font-medium">{PROJECT_TYPES.find(t => t.id === projectType)?.label}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-white/40 text-xs uppercase tracking-widest mb-2">Project Size</p>
+                                            <p className="text-white font-medium">{sqm} SQM</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-3">
+                                        <p className="text-white/40 text-xs uppercase tracking-widest">Investment Summary</p>
+                                        <div className="space-y-2">
+                                            <div className="flex justify-between text-sm">
+                                                <span className="text-white/70">Architectural Design Base</span>
+                                                <span className="text-white font-mono">R {costs.projectDesignCost.toLocaleString()}</span>
+                                            </div>
+                                            {addons.interior && (
+                                                <div className="flex justify-between text-sm">
+                                                    <span className="text-white/70">Interior Design Extension</span>
+                                                    <span className="text-white font-mono">R {costs.interiorCost.toLocaleString()}</span>
+                                                </div>
+                                            )}
+                                            {addons.landscape && (
+                                                <div className="flex justify-between text-sm">
+                                                    <span className="text-white/70">Landscaping Extension</span>
+                                                    <span className="text-white font-mono">R {costs.landscapingCost.toLocaleString()}</span>
+                                                </div>
+                                            )}
+                                            {costs.interactiveCost > 0 && activeInteractiveLevel && (
+                                                <div className="flex justify-between text-sm">
+                                                    <span className="text-white/70">Interactive Level: {activeInteractiveLevel.label.split('—')[0]}</span>
+                                                    <span className="text-white font-mono">R {costs.interactiveCost.toLocaleString()}</span>
+                                                </div>
+                                            )}
+                                            {addons.analysis && (
+                                                <div className="flex justify-between text-sm">
+                                                    <span className="text-white/70">Statistical Analysis</span>
+                                                    <span className="text-white font-mono">R {costs.analysisCost.toLocaleString()}</span>
+                                                </div>
+                                            )}
+                                            {addons.gameMode && (
+                                                <div className="flex justify-between text-sm">
+                                                    <span className="text-white/70">Game Mode Environment</span>
+                                                    <span className="text-white font-mono">R {costs.gameModeCost.toLocaleString()}</span>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    <div className="pt-6 border-t border-white/10 mt-8">
+                                        <div className="flex justify-between items-end">
+                                            <div>
+                                                <p className="text-white/40 text-xs uppercase tracking-widest mb-1">Total Estimated Investment</p>
+                                                <div className="text-3xl font-bold text-green-500">
+                                                    R {costs.total.toLocaleString()}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="mt-12 text-[10px] text-white/30 uppercase tracking-[0.2em] pt-8 text-center italic">
+                                        This quote is an automated estimate and subject to final review and site conditions.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="p-8 bg-zinc-950 border-t border-white/5 flex flex-col sm:flex-row gap-4">
+                                <Button
+                                    onClick={handleSavePDF}
+                                    className="flex-1 bg-green-500 hover:bg-green-400 text-zinc-900 font-bold"
+                                >
+                                    <FileText className="mr-2 h-4 w-4" /> Save as PDF
+                                </Button>
+                                <Button
+                                    onClick={handlePrint}
+                                    variant="outline"
+                                    className="flex-1 border-white/10 text-white hover:bg-white/5"
+                                >
+                                    <Printer className="mr-2 h-4 w-4" /> Print Quote
+                                </Button>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
         </section>
     );

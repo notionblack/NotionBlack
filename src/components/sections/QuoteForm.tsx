@@ -20,15 +20,15 @@ export function QuoteForm() {
                 <h2 className="text-3xl font-bold text-white mb-8">Request A Quote</h2>
 
                 <form
-                    action="https://formsubmit.co/ntabisonkomo111@gmail.com"
+                    action="https://formspree.io/f/xvzwzlke"
                     method="POST"
+                    encType="multipart/form-data"
                     onSubmit={() => setIsLoading(true)}
                     className="space-y-6"
                 >
-                    {/* FormSubmit Configuration */}
-                    <input type="hidden" name="_captcha" value="false" />
-                    <input type="hidden" name="_next" value="http://127.0.0.1:3000/thank-you" />
-                    <input type="hidden" name="_subject" value="New Quote Request" />
+                    {/* Formspree Configuration */}
+                    <input type="hidden" name="_subject" value="New Quote Request from Notion Black" />
+                    <input type="hidden" name="_next" value="/thank-you" />
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div className="space-y-2">
@@ -94,6 +94,21 @@ export function QuoteForm() {
                             className="bg-background/50 border-white/10 text-white placeholder:text-white/30 focus-visible:ring-green-500/50 resize-none"
                             placeholder="Tell us about your project..."
                         />
+                    </div>
+
+                    <div className="space-y-2">
+                        <Label htmlFor="attachment" className="text-white/80">Attach Project Brief / Files (Optional)</Label>
+                        <div className="relative">
+                            <Input
+                                id="attachment"
+                                name="attachment"
+                                type="file"
+                                className="bg-background/50 border-white/10 text-white file:bg-zinc-800 file:text-white file:border-0 file:px-4 file:py-2 file:mr-4 file:hover:bg-zinc-700 cursor-pointer h-auto py-2"
+                            />
+                        </div>
+                        <p className="text-[10px] text-white/40 uppercase tracking-widest mt-1">
+                            Accepted: PDF, Images, DWG (Max 10MB)
+                        </p>
                     </div>
 
                     <Button
