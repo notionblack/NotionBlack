@@ -236,7 +236,7 @@ export function ProjectEstimator() {
                                     </div>
                                     <div className="flex items-start text-white font-black leading-none">
                                         <span className="text-2xl text-green-500 mt-2 mr-1">R</span>
-                                        <span className="text-6xl sm:text-7xl tabular-nums tracking-tracking-tight">{costs.total.toLocaleString()}</span>
+                                        <span className="text-6xl sm:text-[70px] tabular-nums tracking-tight">{costs.total.toLocaleString()}</span>
                                     </div>
                                 </motion.div>
 

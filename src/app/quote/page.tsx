@@ -174,8 +174,8 @@ function QuoteContent() {
 
                         <div className="bg-zinc-950 p-10 rounded-2xl flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
                             <div>
-                                <p className="text-white/40 text-xs uppercase tracking-[0.2em] mb-2">Total Estimated Investment</p>
-                                <div className="text-4xl md:text-5xl font-black text-green-500 tabular-nums">
+                                <p className="text-white/40 text-xs uppercase tracking-[0.2em] mb-2 font-bold">Total Estimated Investment</p>
+                                <div className="text-4xl md:text-[70px] font-black text-green-500 tabular-nums leading-none">
                                     R {costs.total.toLocaleString()}
                                 </div>
                             </div>
