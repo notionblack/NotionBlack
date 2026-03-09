@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Layout, Trees, BarChart, Video, X, Download, Printer, FileText } from "lucide-react";
+import { Layout, Trees, BarChart, Video, X, Download, Printer } from "lucide-react";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
 import {
@@ -75,24 +75,6 @@ export function ProjectEstimator() {
 
     const handlePrint = () => {
         window.print();
-    };
-
-    const handleSavePDF = async () => {
-        if (!pdfRef.current) return;
-
-        // Dynamic import to avoid SSR issues
-        const html2pdf = (await import("html2pdf.js")).default;
-
-        const element = pdfRef.current;
-        const opt = {
-            margin: 1,
-            filename: `NotionBlack_Quote_${Date.now()}.pdf`,
-            image: { type: 'jpeg' as const, quality: 0.98 },
-            html2canvas: { scale: 2 },
-            jsPDF: { unit: 'in' as const, format: 'letter' as const, orientation: 'portrait' as const }
-        };
-
-        html2pdf().set(opt).from(element).save();
     };
 
     return (
@@ -318,11 +300,11 @@ export function ProjectEstimator() {
                             initial={{ scale: 0.9, y: 20 }}
                             animate={{ scale: 1, y: 0 }}
                             exit={{ scale: 0.9, y: 20 }}
-                            className="bg-zinc-900 border border-white/10 w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl relative"
+                            className="bg-white border border-zinc-200 w-full max-w-2xl rounded-2xl overflow-hidden shadow-2xl relative"
                         >
                             <button
                                 onClick={() => setIsModalOpen(false)}
-                                className="absolute top-4 right-4 text-white/50 hover:text-white transition-colors"
+                                className="absolute top-4 right-4 text-zinc-400 hover:text-black transition-colors"
                             >
                                 <X className="h-6 w-6" />
                             </button>
@@ -331,95 +313,88 @@ export function ProjectEstimator() {
                                 {/* PDF Content */}
                                 <div className="mb-8 flex justify-between items-start">
                                     <div>
-                                        <h2 className="text-2xl font-bold text-white mb-1">Project Quote</h2>
-                                        <p className="text-white/40 text-sm font-mono">Notion Black Studio</p>
+                                        <h2 className="text-2xl font-bold text-black mb-1">Project Quote</h2>
+                                        <p className="text-zinc-500 text-sm font-mono">Notion Black Studio</p>
                                     </div>
                                     <div className="text-right">
-                                        <p className="text-white/40 text-xs uppercase tracking-widest mb-1">Date</p>
-                                        <p className="text-white text-sm font-medium">{new Date().toLocaleDateString()}</p>
+                                        <p className="text-zinc-400 text-xs uppercase tracking-widest mb-1">Date</p>
+                                        <p className="text-black text-sm font-medium">{new Date().toLocaleDateString()}</p>
                                     </div>
                                 </div>
 
                                 <div className="space-y-6">
-                                    <div className="grid grid-cols-2 gap-8 py-6 border-y border-white/5">
+                                    <div className="grid grid-cols-2 gap-8 py-6 border-y border-zinc-100">
                                         <div>
-                                            <p className="text-white/40 text-xs uppercase tracking-widest mb-2">Project Type</p>
-                                            <p className="text-white font-medium">{PROJECT_TYPES.find(t => t.id === projectType)?.label}</p>
+                                            <p className="text-zinc-400 text-xs uppercase tracking-widest mb-2">Project Type</p>
+                                            <p className="text-black font-medium">{PROJECT_TYPES.find(t => t.id === projectType)?.label}</p>
                                         </div>
                                         <div>
-                                            <p className="text-white/40 text-xs uppercase tracking-widest mb-2">Project Size</p>
-                                            <p className="text-white font-medium">{sqm} SQM</p>
+                                            <p className="text-zinc-400 text-xs uppercase tracking-widest mb-2">Project Size</p>
+                                            <p className="text-black font-medium">{sqm} SQM</p>
                                         </div>
                                     </div>
 
                                     <div className="space-y-3">
-                                        <p className="text-white/40 text-xs uppercase tracking-widest">Investment Summary</p>
+                                        <p className="text-zinc-400 text-xs uppercase tracking-widest">Investment Summary</p>
                                         <div className="space-y-2">
                                             <div className="flex justify-between text-sm">
-                                                <span className="text-white/70">Architectural Design Base</span>
-                                                <span className="text-white font-mono">R {costs.projectDesignCost.toLocaleString()}</span>
+                                                <span className="text-zinc-600">Architectural Design Base</span>
+                                                <span className="text-black font-mono">R {costs.projectDesignCost.toLocaleString()}</span>
                                             </div>
                                             {addons.interior && (
                                                 <div className="flex justify-between text-sm">
-                                                    <span className="text-white/70">Interior Design Extension</span>
-                                                    <span className="text-white font-mono">R {costs.interiorCost.toLocaleString()}</span>
+                                                    <span className="text-zinc-600">Interior Design Extension</span>
+                                                    <span className="text-black font-mono">R {costs.interiorCost.toLocaleString()}</span>
                                                 </div>
                                             )}
                                             {addons.landscape && (
                                                 <div className="flex justify-between text-sm">
-                                                    <span className="text-white/70">Landscaping Extension</span>
-                                                    <span className="text-white font-mono">R {costs.landscapingCost.toLocaleString()}</span>
+                                                    <span className="text-zinc-600">Landscaping Extension</span>
+                                                    <span className="text-black font-mono">R {costs.landscapingCost.toLocaleString()}</span>
                                                 </div>
                                             )}
                                             {costs.interactiveCost > 0 && activeInteractiveLevel && (
                                                 <div className="flex justify-between text-sm">
-                                                    <span className="text-white/70">Interactive Level: {activeInteractiveLevel.label.split('—')[0]}</span>
-                                                    <span className="text-white font-mono">R {costs.interactiveCost.toLocaleString()}</span>
+                                                    <span className="text-zinc-600">Interactive Level: {activeInteractiveLevel.label.split('—')[0]}</span>
+                                                    <span className="text-black font-mono">R {costs.interactiveCost.toLocaleString()}</span>
                                                 </div>
                                             )}
                                             {addons.analysis && (
                                                 <div className="flex justify-between text-sm">
-                                                    <span className="text-white/70">Statistical Analysis</span>
-                                                    <span className="text-white font-mono">R {costs.analysisCost.toLocaleString()}</span>
+                                                    <span className="text-zinc-600">Statistical Analysis</span>
+                                                    <span className="text-black font-mono">R {costs.analysisCost.toLocaleString()}</span>
                                                 </div>
                                             )}
                                             {addons.gameMode && (
                                                 <div className="flex justify-between text-sm">
-                                                    <span className="text-white/70">Game Mode Environment</span>
-                                                    <span className="text-white font-mono">R {costs.gameModeCost.toLocaleString()}</span>
+                                                    <span className="text-zinc-600">Game Mode Environment</span>
+                                                    <span className="text-black font-mono">R {costs.gameModeCost.toLocaleString()}</span>
                                                 </div>
                                             )}
                                         </div>
                                     </div>
 
-                                    <div className="pt-6 border-t border-white/10 mt-8">
+                                    <div className="pt-6 border-t border-zinc-100 mt-8">
                                         <div className="flex justify-between items-end">
                                             <div>
-                                                <p className="text-white/40 text-xs uppercase tracking-widest mb-1">Total Estimated Investment</p>
-                                                <div className="text-3xl font-bold text-green-500">
+                                                <p className="text-zinc-400 text-xs uppercase tracking-widest mb-1">Total Estimated Investment</p>
+                                                <div className="text-3xl font-bold text-green-600">
                                                     R {costs.total.toLocaleString()}
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className="mt-12 text-[10px] text-white/30 uppercase tracking-[0.2em] pt-8 text-center italic">
+                                    <div className="mt-12 text-[10px] text-zinc-400 uppercase tracking-[0.2em] pt-8 text-center italic">
                                         This quote is an automated estimate and subject to final review and site conditions.
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="p-8 bg-zinc-950 border-t border-white/5 flex flex-col sm:flex-row gap-4">
-                                <Button
-                                    onClick={handleSavePDF}
-                                    className="flex-1 bg-green-500 hover:bg-green-400 text-zinc-900 font-bold"
-                                >
-                                    <FileText className="mr-2 h-4 w-4" /> Save as PDF
-                                </Button>
+                            <div className="p-8 bg-zinc-50 border-t border-zinc-100 flex flex-col sm:flex-row gap-4">
                                 <Button
                                     onClick={handlePrint}
-                                    variant="outline"
-                                    className="flex-1 border-white/10 text-white hover:bg-white/5"
+                                    className="w-full bg-green-500 hover:bg-green-600 text-white font-bold h-12"
                                 >
                                     <Printer className="mr-2 h-4 w-4" /> Print Quote
                                 </Button>

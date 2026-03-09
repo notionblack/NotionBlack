@@ -22,7 +22,6 @@ export function QuoteForm() {
                 <form
                     action="https://formspree.io/f/xvzwzlke"
                     method="POST"
-                    encType="multipart/form-data"
                     onSubmit={() => setIsLoading(true)}
                     className="space-y-6"
                 >
@@ -96,20 +95,7 @@ export function QuoteForm() {
                         />
                     </div>
 
-                    <div className="space-y-2">
-                        <Label htmlFor="attachment" className="text-white/80">Attach Project Brief / Files (Optional)</Label>
-                        <div className="relative">
-                            <Input
-                                id="attachment"
-                                name="attachment"
-                                type="file"
-                                className="bg-background/50 border-white/10 text-white file:bg-zinc-800 file:text-white file:border-0 file:px-4 file:py-2 file:mr-4 file:hover:bg-zinc-700 cursor-pointer h-auto py-2"
-                            />
-                        </div>
-                        <p className="text-[10px] text-white/40 uppercase tracking-widest mt-1">
-                            Accepted: PDF, Images, DWG (Max 10MB)
-                        </p>
-                    </div>
+
 
                     <Button
                         type="submit"
