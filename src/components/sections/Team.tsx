@@ -12,28 +12,28 @@ import {
 
 const teamMembers = [
     {
-        name: "Architect Member",
+        name: "Architectural Lead",
         role: "Lead Architect",
-        image: "/images/NB_black_512px.png",
-        bio: "I am an ambitious workaholic, but apart from that, pretty simple person.",
+        image: "/images/logo_final.png",
+        bio: "Dedicated to precision and innovation in structural design and planning.",
     },
     {
-        name: "Design Lead",
+        name: "Interior Specialist",
         role: "Interior Designer",
-        image: "/images/profile_picture_blck.jpg",
-        bio: "I am an ambitious workaholic, but apart from that, pretty simple person.",
+        image: "/images/logo_final.png",
+        bio: "Transforming internal spaces into immersive, high-end environments.",
     },
     {
-        name: "Drafter Pro",
-        role: "AutoCAD Specialist",
-        image: "/images/NB_black_512px.png",
-        bio: "I am an ambitious workaholic, but apart from that, pretty simple person.",
+        name: "Technical Lead",
+        role: "Web Design/Developer",
+        image: "/images/logo_final.png",
+        bio: "Bringing architectural structure to the web with high-performance digital platforms.",
     },
     {
-        name: "Creative Director",
-        role: "Digital Creator",
-        image: "/images/profile_picture_blck.jpg",
-        bio: "I am an ambitious workaholic, but apart from that, pretty simple person.",
+        name: "Creative Strategist",
+        role: "Digital Specialist",
+        image: "/images/logo_final.png",
+        bio: "Building cutting-edge digital experiences with a focus on user engagement.",
     },
 ];
 
