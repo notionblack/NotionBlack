@@ -309,7 +309,7 @@ export function ProjectEstimator() {
                                 <X className="h-6 w-6" />
                             </button>
 
-                            <div className="p-8 md:p-12" ref={pdfRef}>
+                            <div className="p-8 md:p-12 bg-white" ref={pdfRef} id="printable-quote">
                                 {/* PDF Content */}
                                 <div className="mb-8 flex justify-between items-start">
                                     <div>
