@@ -15,9 +15,9 @@ import {
 } from "@/components/ui/select";
 
 const PROJECT_TYPES = [
-    { id: "homes", label: "Personal Home", short: "Home", rate: 180 },
-    { id: "residential", label: "Property Development (Residential Estates and Complexes)", short: "Estates", rate: 190 },
-    { id: "commercial", label: "Commercial Projects", short: "Commercial", rate: 200 },
+    { id: "homes", label: "Personal Home", short: "Home", rate: 200 },
+    { id: "residential", label: "Property Development (Residential Estates and Complexes)", short: "Estates", rate: 250 },
+    { id: "commercial", label: "Commercial Projects", short: "Commercial", rate: 300 },
 ] as const;
 
 type ProjectTypeId = typeof PROJECT_TYPES[number]['id'];
@@ -41,7 +41,7 @@ export function ProjectEstimator() {
     const [interactiveLevel, setInteractiveLevel] = useState<string>("none");
 
     const calculateTotals = () => {
-        const rate = PROJECT_TYPES.find(t => t.id === projectType)?.rate || 180;
+        const rate = PROJECT_TYPES.find(t => t.id === projectType)?.rate || 200;
         const projectDesignCost = sqm * rate;
 
         const interiorCost = addons.interior ? projectDesignCost * 0.30 : 0;
@@ -250,7 +250,7 @@ export function ProjectEstimator() {
                                         )}
                                         {costs.interactiveCost > 0 && activeInteractiveLevel && (
                                             <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="flex justify-between items-center text-white/80 pb-3 border-b border-white/10 overflow-hidden">
-                                                <span>{activeInteractiveLevel.label.split('(')[0].trim()}</span>
+                                                <span>{activeInteractiveLevel.label}</span>
                                                 <span className="font-mono text-green-400">R {costs.interactiveCost.toLocaleString()}</span>
                                             </motion.div>
                                         )}

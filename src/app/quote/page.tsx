@@ -7,9 +7,9 @@ import { Button } from "@/components/ui/button";
 import { Suspense } from "react";
 
 const PROJECT_TYPES = [
-    { id: "homes", label: "Personal Home", rate: 180 },
-    { id: "residential", label: "Property Development (Residential Estates and Complexes)", rate: 190 },
-    { id: "commercial", label: "Commercial Projects", rate: 200 },
+    { id: "homes", label: "Personal Home", rate: 200 },
+    { id: "residential", label: "Property Development (Residential Estates and Complexes)", rate: 250 },
+    { id: "commercial", label: "Commercial Projects", rate: 300 },
 ];
 
 const INTERACTIVE_LEVELS = [
@@ -31,7 +31,7 @@ function QuoteContent() {
     const interactive = searchParams.get("interactive") || "none";
 
     const calculateTotals = () => {
-        const rate = PROJECT_TYPES.find(t => t.id === type)?.rate || 180;
+        const rate = PROJECT_TYPES.find(t => t.id === type)?.rate || 200;
         const projectDesignCost = sqm * rate;
 
         const interiorCost = interior ? projectDesignCost * 0.30 : 0;
@@ -148,7 +148,7 @@ function QuoteContent() {
 
                                 {costs.interactiveCost > 0 && (
                                     <div className="flex justify-between items-center py-2 border-b border-zinc-50">
-                                        <span className="text-zinc-600 text-[11px]">{activeInteractiveLevel?.label.split('(')[0]}</span>
+                                        <span className="text-zinc-600 text-[11px]">{activeInteractiveLevel?.label}</span>
                                         <span className="font-mono text-black text-[11px]">R {costs.interactiveCost.toLocaleString()}</span>
                                     </div>
                                 )}
