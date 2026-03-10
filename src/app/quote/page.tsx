@@ -89,95 +89,95 @@ function QuoteContent() {
                     className="bg-white rounded-2xl shadow-xl overflow-hidden border border-zinc-200"
                     id="printable-quote"
                 >
-                    <div className="p-8 md:p-16">
+                    <div className="p-5 md:p-10">
                         {/* Quote Header */}
-                        <div className="flex flex-col md:flex-row justify-between gap-8 mb-16 pb-8 border-b border-zinc-100">
+                        <div className="flex flex-col md:flex-row justify-between gap-6 mb-10 pb-6 border-b border-zinc-100">
                             <div>
-                                <h1 className="text-4xl font-black text-black mb-2 tracking-tight">PROJECT QUOTE</h1>
-                                <p className="text-zinc-500 font-mono text-sm tracking-wider">NOTION BLACK DESIGN STUDIO</p>
+                                <h1 className="text-2xl font-black text-black mb-1 tracking-tight">PROJECT QUOTE</h1>
+                                <p className="text-zinc-500 font-mono text-[9px] tracking-wider uppercase">NOTION BLACK DESIGN STUDIO</p>
                             </div>
                             <div className="md:text-right">
-                                <p className="text-zinc-400 text-xs uppercase tracking-widest mb-1">Generated On</p>
-                                <p className="text-black font-bold">{new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' })}</p>
+                                <p className="text-zinc-400 text-[8px] uppercase tracking-widest mb-1">Generated On</p>
+                                <p className="text-black font-bold text-sm">{new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' })}</p>
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
                             <div>
-                                <h3 className="text-zinc-400 text-xs uppercase tracking-widest mb-4 font-bold">Project Configuration</h3>
-                                <div className="space-y-4">
+                                <h3 className="text-zinc-400 text-[8px] uppercase tracking-widest mb-3 font-bold">Project Configuration</h3>
+                                <div className="space-y-3">
                                     <div>
-                                        <p className="text-zinc-500 text-xs mb-1">Property Type</p>
-                                        <p className="text-black font-bold uppercase">{projectTypeLabel}</p>
+                                        <p className="text-zinc-500 text-[8px] mb-1">Property Type</p>
+                                        <p className="text-black font-bold uppercase text-xs">{projectTypeLabel}</p>
                                     </div>
                                     <div>
-                                        <p className="text-zinc-500 text-xs mb-1">Development Area</p>
-                                        <p className="text-black font-bold text-xl uppercase">{sqm} Square Metres</p>
+                                        <p className="text-zinc-500 text-[8px] mb-1">Development Area</p>
+                                        <p className="text-black font-bold text-sm uppercase">{sqm} Square Metres</p>
                                     </div>
                                 </div>
                             </div>
-                            <div className="bg-zinc-50 p-6 rounded-xl border border-zinc-100">
-                                <h3 className="text-zinc-400 text-xs uppercase tracking-widest mb-4 font-bold text-center">Interactive Fidelity</h3>
-                                <p className="text-black text-center font-medium leading-relaxed">
+                            <div className="bg-zinc-50 p-4 rounded-lg border border-zinc-100 flex flex-col justify-center">
+                                <h3 className="text-zinc-400 text-[8px] uppercase tracking-widest mb-2 font-bold text-center">Interactive Fidelity</h3>
+                                <p className="text-black text-center font-medium leading-relaxed text-xs">
                                     {activeInteractiveLevel?.label}
                                 </p>
                             </div>
                         </div>
 
-                        <div className="mb-16">
-                            <h3 className="text-zinc-400 text-xs uppercase tracking-widest mb-6 font-bold">Investment Breakdown</h3>
-                            <div className="space-y-4">
-                                <div className="flex justify-between items-center py-4 border-b border-zinc-50">
-                                    <span className="text-zinc-600">Architectural Design Base</span>
-                                    <span className="font-mono text-black font-bold">R {costs.projectDesignCost.toLocaleString()}</span>
+                        <div className="mb-10">
+                            <h3 className="text-zinc-400 text-[8px] uppercase tracking-widest mb-4 font-bold">Investment Breakdown</h3>
+                            <div className="space-y-2">
+                                <div className="flex justify-between items-center py-2 border-b border-zinc-50">
+                                    <span className="text-zinc-600 text-[11px]">Architectural Design Base</span>
+                                    <span className="font-mono text-black font-bold text-[11px]">R {costs.projectDesignCost.toLocaleString()}</span>
                                 </div>
 
                                 {interior && (
-                                    <div className="flex justify-between items-center py-4 border-b border-zinc-50">
-                                        <span className="text-zinc-600">Interior Detailing</span>
-                                        <span className="font-mono text-black">R {costs.interiorCost.toLocaleString()}</span>
+                                    <div className="flex justify-between items-center py-2 border-b border-zinc-50">
+                                        <span className="text-zinc-600 text-[11px]">Interior Detailing</span>
+                                        <span className="font-mono text-black text-[11px]">R {costs.interiorCost.toLocaleString()}</span>
                                     </div>
                                 )}
 
                                 {landscape && (
-                                    <div className="flex justify-between items-center py-4 border-b border-zinc-50">
-                                        <span className="text-zinc-600">Landscaping</span>
-                                        <span className="font-mono text-black">R {costs.landscapeCost.toLocaleString()}</span>
+                                    <div className="flex justify-between items-center py-2 border-b border-zinc-50">
+                                        <span className="text-zinc-600 text-[11px]">Landscaping</span>
+                                        <span className="font-mono text-black text-[11px]">R {costs.landscapeCost.toLocaleString()}</span>
                                     </div>
                                 )}
 
                                 {costs.interactiveCost > 0 && (
-                                    <div className="flex justify-between items-center py-4 border-b border-zinc-50">
-                                        <span className="text-zinc-600">{activeInteractiveLevel?.label.split('(')[0]}</span>
-                                        <span className="font-mono text-black">R {costs.interactiveCost.toLocaleString()}</span>
+                                    <div className="flex justify-between items-center py-2 border-b border-zinc-50">
+                                        <span className="text-zinc-600 text-[11px]">{activeInteractiveLevel?.label.split('(')[0]}</span>
+                                        <span className="font-mono text-black text-[11px]">R {costs.interactiveCost.toLocaleString()}</span>
                                     </div>
                                 )}
 
                                 {gameMode && (
-                                    <div className="flex justify-between items-center py-4 border-b border-zinc-50">
-                                        <span className="text-zinc-600">VR Game Mode Implementation</span>
-                                        <span className="font-mono text-black">R {costs.gameModeCost.toLocaleString()}</span>
+                                    <div className="flex justify-between items-center py-2 border-b border-zinc-50">
+                                        <span className="text-zinc-600 text-[11px]">VR Game Mode Implementation</span>
+                                        <span className="font-mono text-black text-[11px]">R {costs.gameModeCost.toLocaleString()}</span>
                                     </div>
                                 )}
                             </div>
                         </div>
 
-                        <div className="bg-zinc-950 p-10 rounded-2xl flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
+                        <div className="bg-zinc-950 p-6 rounded-xl flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
                             <div>
-                                <p className="text-white/40 text-xs uppercase tracking-[0.2em] mb-2 font-bold">Total Estimated Investment</p>
-                                <div className="text-4xl md:text-[70px] font-black text-green-500 tabular-nums leading-none">
+                                <p className="text-white/40 text-[8px] uppercase tracking-[0.2em] mb-1 font-bold">Total Estimated Investment</p>
+                                <div className="text-2xl md:text-[42px] font-black text-green-500 tabular-nums leading-none">
                                     R {costs.total.toLocaleString()}
                                 </div>
                             </div>
                             <div className="text-right">
-                                <p className="text-white/20 text-[10px] leading-relaxed max-w-[200px] uppercase">
+                                <p className="text-white/20 text-[8px] leading-relaxed max-w-[150px] uppercase">
                                     Verified automated simulation based on current market coefficients.
                                 </p>
                             </div>
                         </div>
 
-                        <div className="text-center pt-8 border-t border-zinc-100">
-                            <p className="text-[10px] text-zinc-400 uppercase tracking-[0.2em] leading-relaxed">
+                        <div className="text-center pt-6 border-t border-zinc-100">
+                            <p className="text-[8px] text-zinc-400 uppercase tracking-[0.2em] leading-relaxed">
                                 This document is an automated estimation and is subject to final technical review and specific site conditions.
                                 <br />© {new Date().getFullYear()} Notion Black Studio. All rights reserved.
                             </p>
