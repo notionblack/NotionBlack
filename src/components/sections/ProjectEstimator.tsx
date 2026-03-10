@@ -15,52 +15,49 @@ import {
 } from "@/components/ui/select";
 
 const PROJECT_TYPES = [
-    { id: "residential", label: "Residential (Complexes and Gated Community)", short: "Residential", rate: 150 },
-    { id: "homes", label: "Homes", short: "Homes", rate: 150 },
-    { id: "commercial", label: "Commercial (Lodges, Malls, Reserves)", short: "Commercial", rate: 150 },
+    { id: "homes", label: "Personal Home", short: "Home", rate: 160 },
+    { id: "residential", label: "Property Development (Residential Estates and Complexes)", short: "Estates", rate: 180 },
+    { id: "commercial", label: "Commercial Projects", short: "Commercial", rate: 200 },
 ] as const;
 
 type ProjectTypeId = typeof PROJECT_TYPES[number]['id'];
 
 const INTERACTIVE_LEVELS = [
     { id: "none", label: "None", percent: 0 },
-    { id: "tier1", label: "Tier 1 — Doors and Windows", percent: 0.3 },
-    { id: "tier2", label: "Tier 2 — Doors, Windows, Cupboards, Shelves", percent: 0.6 },
-    { id: "tier3", label: "Tier 3 — Full Interaction (TVs, Fridge, Lights, Appliances)", percent: 0.9 },
+    { id: "tier1", label: "Tier 1 (Doors and Windows)", percent: 0.3 },
+    { id: "tier2", label: "Tier 2 (+ Cupboards and Shelves)", percent: 0.6 },
+    { id: "tier3", label: "Tier 3 (+Appliances and Full interactivity)", percent: 0.9 },
 ] as const;
 
 export function ProjectEstimator() {
     const router = useRouter();
-    const [projectType, setProjectType] = useState<ProjectTypeId>("residential");
+    const [projectType, setProjectType] = useState<ProjectTypeId>("homes");
     const [sqm, setSqm] = useState(100);
     const [addons, setAddons] = useState({
         interior: false,
-        landscape: false,
-        analysis: false,
         gameMode: false,
+        landscape: false,
     });
     const [interactiveLevel, setInteractiveLevel] = useState<string>("none");
 
     const calculateTotals = () => {
-        const rate = PROJECT_TYPES.find(t => t.id === projectType)?.rate || 150;
+        const rate = PROJECT_TYPES.find(t => t.id === projectType)?.rate || 160;
         const projectDesignCost = sqm * rate;
 
         const interiorCost = addons.interior ? projectDesignCost * 0.30 : 0;
-        const landscapingCost = addons.landscape ? projectDesignCost * 0.30 : 0;
-        const analysisCost = addons.analysis ? projectDesignCost * 0.25 : 0;
-        const gameModeCost = addons.gameMode ? projectDesignCost * 0.50 : 0;
+        const gameModeCost = addons.gameMode ? projectDesignCost * 0.30 : 0;
+        const landscapeCost = addons.landscape ? sqm * 40 : 0;
 
         const interactivePercent = INTERACTIVE_LEVELS.find(l => l.id === interactiveLevel)?.percent || 0;
         const interactiveCost = projectDesignCost * interactivePercent;
 
-        const total = projectDesignCost + interiorCost + landscapingCost + analysisCost + gameModeCost + interactiveCost;
+        const total = projectDesignCost + interiorCost + gameModeCost + landscapeCost + interactiveCost;
 
         return {
             projectDesignCost,
             interiorCost,
-            landscapingCost,
-            analysisCost,
             gameModeCost,
+            landscapeCost,
             interactiveCost,
             total
         };
@@ -74,9 +71,8 @@ export function ProjectEstimator() {
             type: projectType,
             sqm: sqm.toString(),
             interior: addons.interior.toString(),
-            landscape: addons.landscape.toString(),
-            analysis: addons.analysis.toString(),
             gameMode: addons.gameMode.toString(),
+            landscape: addons.landscape.toString(),
             interactive: interactiveLevel,
         });
 
@@ -175,7 +171,7 @@ export function ProjectEstimator() {
                                         className={`flex items-center gap-2 py-2 px-4 rounded-full text-sm font-medium border transition-colors ${addons.interior ? "bg-white text-black border-white" : "bg-transparent text-white/70 border-white/20 hover:border-white/40"
                                             }`}
                                     >
-                                        <Layout className="w-4 h-4" /> Interior Design
+                                        <Layout className="w-4 h-4" /> Interior Detailing
                                     </button>
                                     <button
                                         onClick={() => setAddons((prev) => ({ ...prev, landscape: !prev.landscape }))}
@@ -185,18 +181,11 @@ export function ProjectEstimator() {
                                         <Trees className="w-4 h-4" /> Landscaping
                                     </button>
                                     <button
-                                        onClick={() => setAddons((prev) => ({ ...prev, analysis: !prev.analysis }))}
-                                        className={`flex items-center gap-2 py-2 px-4 rounded-full text-sm font-medium border transition-colors ${addons.analysis ? "bg-white text-black border-white" : "bg-transparent text-white/70 border-white/20 hover:border-white/40"
-                                            }`}
-                                    >
-                                        <BarChart className="w-4 h-4" /> Analysis
-                                    </button>
-                                    <button
                                         onClick={() => setAddons((prev) => ({ ...prev, gameMode: !prev.gameMode }))}
                                         className={`flex items-center gap-2 py-2 px-4 rounded-full text-sm font-medium border transition-colors ${addons.gameMode ? "bg-white text-black border-white" : "bg-transparent text-white/70 border-white/20 hover:border-white/40"
                                             }`}
                                     >
-                                        <Video className="w-4 h-4" /> Game Mode
+                                        <Video className="w-4 h-4" /> VR Game Mode
                                     </button>
                                 </div>
                             </div>
@@ -249,31 +238,25 @@ export function ProjectEstimator() {
                                     <AnimatePresence>
                                         {addons.interior && (
                                             <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="flex justify-between items-center text-white/80 pb-3 border-b border-white/10 overflow-hidden">
-                                                <span>Interior Design</span>
+                                                <span>Interior Detailing</span>
                                                 <span className="font-mono text-green-400">R {costs.interiorCost.toLocaleString()}</span>
                                             </motion.div>
                                         )}
                                         {addons.landscape && (
                                             <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="flex justify-between items-center text-white/80 pb-3 border-b border-white/10 overflow-hidden">
                                                 <span>Landscaping</span>
-                                                <span className="font-mono text-green-400">R {costs.landscapingCost.toLocaleString()}</span>
+                                                <span className="font-mono text-green-400">R {costs.landscapeCost.toLocaleString()}</span>
                                             </motion.div>
                                         )}
                                         {costs.interactiveCost > 0 && activeInteractiveLevel && (
                                             <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="flex justify-between items-center text-white/80 pb-3 border-b border-white/10 overflow-hidden">
-                                                <span>{activeInteractiveLevel.label.split('—')[0].trim()}</span>
+                                                <span>{activeInteractiveLevel.label.split('(')[0].trim()}</span>
                                                 <span className="font-mono text-green-400">R {costs.interactiveCost.toLocaleString()}</span>
-                                            </motion.div>
-                                        )}
-                                        {addons.analysis && (
-                                            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="flex justify-between items-center text-white/80 pb-3 border-b border-white/10 overflow-hidden">
-                                                <span>Analysis</span>
-                                                <span className="font-mono text-green-400">R {costs.analysisCost.toLocaleString()}</span>
                                             </motion.div>
                                         )}
                                         {addons.gameMode && (
                                             <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="flex justify-between items-center text-white/80 pb-3 border-b border-white/10 overflow-hidden">
-                                                <span className="text-white/80">Game Mode</span>
+                                                <span className="text-white/80">VR Game Mode</span>
                                                 <span className="font-mono text-green-400">R {costs.gameModeCost.toLocaleString()}</span>
                                             </motion.div>
                                         )}
