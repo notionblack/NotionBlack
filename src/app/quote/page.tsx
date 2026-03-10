@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button";
 import { Suspense } from "react";
 
 const PROJECT_TYPES = [
-    { id: "homes", label: "Personal Home", rate: 160 },
-    { id: "residential", label: "Property Development (Residential Estates and Complexes)", rate: 180 },
+    { id: "homes", label: "Personal Home", rate: 180 },
+    { id: "residential", label: "Property Development (Residential Estates and Complexes)", rate: 190 },
     { id: "commercial", label: "Commercial Projects", rate: 200 },
 ];
 
@@ -31,7 +31,7 @@ function QuoteContent() {
     const interactive = searchParams.get("interactive") || "none";
 
     const calculateTotals = () => {
-        const rate = PROJECT_TYPES.find(t => t.id === type)?.rate || 160;
+        const rate = PROJECT_TYPES.find(t => t.id === type)?.rate || 180;
         const projectDesignCost = sqm * rate;
 
         const interiorCost = interior ? projectDesignCost * 0.30 : 0;

@@ -15,8 +15,8 @@ import {
 } from "@/components/ui/select";
 
 const PROJECT_TYPES = [
-    { id: "homes", label: "Personal Home", short: "Home", rate: 160 },
-    { id: "residential", label: "Property Development (Residential Estates and Complexes)", short: "Estates", rate: 180 },
+    { id: "homes", label: "Personal Home", short: "Home", rate: 180 },
+    { id: "residential", label: "Property Development (Residential Estates and Complexes)", short: "Estates", rate: 190 },
     { id: "commercial", label: "Commercial Projects", short: "Commercial", rate: 200 },
 ] as const;
 
@@ -41,7 +41,7 @@ export function ProjectEstimator() {
     const [interactiveLevel, setInteractiveLevel] = useState<string>("none");
 
     const calculateTotals = () => {
-        const rate = PROJECT_TYPES.find(t => t.id === projectType)?.rate || 160;
+        const rate = PROJECT_TYPES.find(t => t.id === projectType)?.rate || 180;
         const projectDesignCost = sqm * rate;
 
         const interiorCost = addons.interior ? projectDesignCost * 0.30 : 0;

@@ -16,12 +16,6 @@ export default function Home() {
       <PremiumStats />
       <ProjectEstimator />
       <FeaturedProjects />
-      <Team />
-      <section id="contact" className="py-24 bg-background/50 border-t border-white/5">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
-          <QuoteForm />
-        </div>
-      </section>
     </>
   );
 }

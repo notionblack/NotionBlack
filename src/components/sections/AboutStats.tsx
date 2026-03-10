@@ -30,6 +30,7 @@ function AnimatedCounter({ from, to }: { from: number; to: number }) {
 export function AboutStats() {
     return (
         <section id="about" className="py-24 bg-background border-t border-white/5 relative">
+            <div id="contact" className="absolute -top-24" /> {/* Hidden anchor for contact links */}
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-center">
 
