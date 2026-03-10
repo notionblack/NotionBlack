@@ -31,7 +31,7 @@ export function Footer() {
                                 <span className="sr-only">Instagram</span>
                                 <Instagram className="w-5 h-5" />
                             </Link>
-                            <Link href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/70 hover:bg-green-600 hover:text-white transition-colors">
+                            <Link href="https://www.linkedin.com/in/notion-black-archviz" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/70 hover:bg-green-600 hover:text-white transition-colors">
                                 <span className="sr-only">LinkedIn</span>
                                 <Linkedin className="w-5 h-5" />
                             </Link>
@@ -72,11 +72,11 @@ export function Footer() {
                             </li>
                             <li className="flex items-center gap-4">
                                 <Phone className="w-5 h-5 text-green-500 shrink-0" />
-                                <span className="text-white/70 text-sm">011 521 4458</span>
+                                <span className="text-white/70 text-sm">083 899 8618</span>
                             </li>
                             <li className="flex items-center gap-4">
                                 <Mail className="w-5 h-5 text-green-500 shrink-0" />
-                                <span className="text-white/70 text-sm">info@notionblack.co.za</span>
+                                <span className="text-white/70 text-sm">notionblack@gmail.com</span>
                             </li>
                         </ul>
                     </div>
