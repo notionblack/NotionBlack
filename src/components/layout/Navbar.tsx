@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
     { name: "Home", href: "/#home" },
@@ -14,8 +16,6 @@ const navLinks = [
     { name: "Team", href: "/#team" },
     { name: "Contact", href: "/#contact" },
 ];
-
-import { usePathname } from "next/navigation";
 
 export function Navbar() {
     const pathname = usePathname();
@@ -35,8 +35,8 @@ export function Navbar() {
     return (
         <header
             className={`fixed top-0 w-full z-50 transition-all duration-300 no-print ${isScrolled
-                ? "bg-black/90 backdrop-blur-md border-b border-white/10 shadow-sm"
-                : "bg-black/40 backdrop-blur-sm"
+                ? "bg-background/90 backdrop-blur-md border-b border-border shadow-sm"
+                : "bg-background/40 backdrop-blur-sm"
                 }`}
         >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,9 +49,9 @@ export function Navbar() {
                                 alt="Notion Black logo"
                                 width={64}
                                 height={64}
-                                className="w-16 h-16 object-contain"
+                                className="w-16 h-16 object-contain dark:invert"
                             />
-                            <span className="text-xl font-bold tracking-tight text-white hidden sm:block">
+                            <span className="text-xl font-bold tracking-tight text-foreground hidden sm:block">
                                 Notion Black
                             </span>
                         </Link>
@@ -63,21 +63,23 @@ export function Navbar() {
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                className="text-sm font-medium text-white/80 hover:text-white transition-colors"
+                                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                             >
                                 {link.name}
                             </Link>
                         ))}
+                        <ThemeToggle />
                         <Button asChild className="bg-green-600 hover:bg-green-700 text-white rounded-full px-6">
                             <Link href="/#contact">Request a quote</Link>
                         </Button>
                     </nav>
 
                     {/* Mobile Menu Button */}
-                    <div className="md:hidden">
+                    <div className="md:hidden flex items-center gap-4">
+                        <ThemeToggle />
                         <button
                             type="button"
-                            className="p-2 text-white/80 hover:text-white"
+                            className="p-2 text-foreground/80 hover:text-foreground"
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         >
                             <span className="sr-only">Open main menu</span>
@@ -93,14 +95,14 @@ export function Navbar() {
 
             {/* Mobile Menu */}
             {mobileMenuOpen && (
-                <div className="md:hidden bg-background/95 backdrop-blur-lg border-b border-white/10">
+                <div className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border">
                     <div className="px-4 pt-2 pb-6 space-y-1 sm:px-6 flex flex-col">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.name}
                                 href={link.href}
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="block px-3 py-4 text-base font-medium text-white/90 hover:text-white hover:bg-white/5 rounded-md transition-colors"
+                                className="block px-3 py-4 text-base font-medium text-foreground/90 hover:text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-md transition-colors"
                             >
                                 {link.name}
                             </Link>
