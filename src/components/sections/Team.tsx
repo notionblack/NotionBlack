@@ -9,33 +9,8 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
-
-const teamMembers = [
-    {
-        name: "Architectural Lead",
-        role: "Lead Architect",
-        image: "/images/logo_final.png",
-        bio: "Dedicated to precision and innovation in structural design and planning.",
-    },
-    {
-        name: "Interior Specialist",
-        role: "Interior Designer",
-        image: "/images/logo_final.png",
-        bio: "Transforming internal spaces into immersive, high-end environments.",
-    },
-    {
-        name: "Technical Lead",
-        role: "Web Design/Developer",
-        image: "/images/logo_final.png",
-        bio: "Bringing architectural structure to the web with high-performance digital platforms.",
-    },
-    {
-        name: "Creative Strategist",
-        role: "Digital Specialist",
-        image: "/images/logo_final.png",
-        bio: "Building cutting-edge digital experiences with a focus on user engagement.",
-    },
-];
+import Link from "next/link";
+import { teamMembers } from "@/lib/teamData";
 
 export function Team() {
     return (
@@ -58,7 +33,7 @@ export function Team() {
                     <CarouselContent className="-ml-4">
                         {teamMembers.map((member, index) => (
                             <CarouselItem key={index} className="pl-4 sm:basis-1/2 lg:basis-1/4">
-                                <div className="group bg-card border border-white/5 hover:border-white/10 rounded-2xl p-6 text-center transition-all duration-300 hover:-translate-y-2">
+                                <Link href={`/team/${member.slug}`} className="block group bg-card border border-white/5 hover:border-white/10 rounded-2xl p-6 text-center transition-all duration-300 hover:-translate-y-2">
                                     <div className="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden ring-4 ring-white/5 group-hover:ring-white/10 transition-all duration-300">
                                         <Image
                                             src={member.image}
@@ -71,25 +46,13 @@ export function Team() {
                                     <span className="text-sm font-medium tracking-wider uppercase text-green-500 mb-4 block">
                                         {member.role}
                                     </span>
-                                    <p className="text-white/60 text-sm mb-6 leading-relaxed">
+                                    <p className="text-white/60 text-sm mb-6 leading-relaxed line-clamp-3 h-20">
                                         {member.bio}
                                     </p>
-
-                                    <div className="flex justify-center gap-3 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
-                                        <a href="#" className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:bg-green-600 hover:text-white transition-colors">
-                                            <Twitter className="w-4 h-4" />
-                                        </a>
-                                        <a href="#" className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:bg-green-600 hover:text-white transition-colors">
-                                            <Facebook className="w-4 h-4" />
-                                        </a>
-                                        <a href="#" className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:bg-green-600 hover:text-white transition-colors">
-                                            <Instagram className="w-4 h-4" />
-                                        </a>
-                                        <a href="#" className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white/50 hover:bg-green-600 hover:text-white transition-colors">
-                                            <Linkedin className="w-4 h-4" />
-                                        </a>
+                                    <div className="text-green-500 font-medium text-sm flex items-center justify-center gap-2 opacity-80 group-hover:opacity-100 transition-opacity">
+                                        View Profile <span>&rarr;</span>
                                     </div>
-                                </div>
+                                </Link>
                             </CarouselItem>
                         ))}
                     </CarouselContent>
