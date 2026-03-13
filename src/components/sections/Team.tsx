@@ -10,9 +10,15 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel";
 import Link from "next/link";
+import Autoplay from "embla-carousel-autoplay";
+import * as React from "react";
 import { teamMembers } from "@/lib/teamData";
 
 export function Team() {
+    const plugin = React.useRef(
+        Autoplay({ delay: 3000, stopOnInteraction: true })
+    );
+
     return (
         <section id="team" className="py-24 bg-background">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -26,8 +32,9 @@ export function Team() {
                 <Carousel
                     opts={{
                         align: "start",
-                        loop: false,
+                        loop: true,
                     }}
+                    plugins={[plugin.current]}
                     className="w-full relative"
                 >
                     <CarouselContent className="-ml-4">
