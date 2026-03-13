@@ -11,13 +11,13 @@ export function QuoteForm() {
     const [isLoading, setIsLoading] = useState(false);
 
     return (
-        <div className="bg-card border border-white/10 rounded-2xl p-8 sm:p-10 shadow-lg relative overflow-hidden">
+        <div className="bg-card border border-border rounded-2xl p-8 sm:p-10 shadow-lg relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/10 blur-3xl rounded-full"></div>
             <div className="relative z-10">
                 <h3 className="text-sm font-semibold text-green-500 tracking-wider uppercase mb-2">
                     Be Part of our Business
                 </h3>
-                <h2 className="text-3xl font-bold text-white mb-8">Request A Quote</h2>
+                <h2 className="text-3xl font-bold text-foreground mb-8">Request A Quote</h2>
 
                 <form
                     action="https://formspree.io/f/xvzwzlke"
@@ -31,36 +31,36 @@ export function QuoteForm() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div className="space-y-2">
-                            <Label htmlFor="first_name" className="text-white/80">First Name</Label>
+                            <Label htmlFor="first_name" className="text-muted-foreground">First Name</Label>
                             <Input
                                 id="first_name"
                                 name="first_name"
                                 type="text"
                                 required
-                                className="bg-background/50 border-white/10 text-white placeholder:text-white/30 focus-visible:ring-green-500/50"
+                                className="bg-background/50 border-border text-foreground placeholder:text-muted-foreground/30 focus-visible:ring-green-500/50"
                                 placeholder="John"
                             />
                         </div>
                         <div className="space-y-2">
-                            <Label htmlFor="last_name" className="text-white/80">Last Name</Label>
+                            <Label htmlFor="last_name" className="text-muted-foreground">Last Name</Label>
                             <Input
                                 id="last_name"
                                 name="last_name"
                                 type="text"
                                 required
-                                className="bg-background/50 border-white/10 text-white placeholder:text-white/30 focus-visible:ring-green-500/50"
+                                className="bg-background/50 border-border text-foreground placeholder:text-muted-foreground/30 focus-visible:ring-green-500/50"
                                 placeholder="Doe"
                             />
                         </div>
                     </div>
 
                     <div className="space-y-2">
-                        <Label htmlFor="service" className="text-white/80">Choose your Service</Label>
+                        <Label htmlFor="service" className="text-muted-foreground">Choose your Service</Label>
                         <Select name="service" required>
-                            <SelectTrigger className="bg-background/50 border-white/10 text-white focus:ring-green-500/50">
+                            <SelectTrigger className="bg-background/50 border-border text-foreground focus:ring-green-500/50">
                                 <SelectValue placeholder="Select a service" />
                             </SelectTrigger>
-                            <SelectContent className="bg-card border-white/10 text-white">
+                            <SelectContent className="bg-card border-border text-foreground">
                                 <SelectItem value="Architectural Design">Architectural Design</SelectItem>
                                 <SelectItem value="Renovation">Renovation</SelectItem>
                                 <SelectItem value="Interior Design">Interior Design</SelectItem>
@@ -72,25 +72,25 @@ export function QuoteForm() {
                     </div>
 
                     <div className="space-y-2">
-                        <Label htmlFor="phone" className="text-white/80">Phone Number</Label>
+                        <Label htmlFor="phone" className="text-muted-foreground">Phone Number</Label>
                         <Input
                             id="phone"
                             name="phone"
                             type="tel"
                             required
-                            className="bg-background/50 border-white/10 text-white placeholder:text-white/30 focus-visible:ring-green-500/50"
+                            className="bg-background/50 border-border text-foreground placeholder:text-muted-foreground/30 focus-visible:ring-green-500/50"
                             placeholder="+27 00 000 0000"
                         />
                     </div>
 
                     <div className="space-y-2">
-                        <Label htmlFor="message" className="text-white/80">Message</Label>
+                        <Label htmlFor="message" className="text-muted-foreground">Message</Label>
                         <Textarea
                             id="message"
                             name="message"
                             required
                             rows={4}
-                            className="bg-background/50 border-white/10 text-white placeholder:text-white/30 focus-visible:ring-green-500/50 resize-none"
+                            className="bg-background/50 border-border text-foreground placeholder:text-muted-foreground/30 focus-visible:ring-green-500/50 resize-none"
                             placeholder="Tell us about your project..."
                         />
                     </div>

@@ -39,7 +39,7 @@ export function FeaturedProjects() {
                         transition={{ duration: 0.6 }}
                         className="max-w-xl"
                     >
-                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">
                             Featured Work
                         </h2>
                     </motion.div>
@@ -51,7 +51,7 @@ export function FeaturedProjects() {
                         transition={{ duration: 0.6, delay: 0.1 }}
                         className="md:text-right max-w-sm"
                     >
-                        <p className="text-white/70 font-light leading-relaxed">
+                        <p className="text-muted-foreground font-light leading-relaxed">
                             A selection of recent architectural and digital achievements that showcase our structured approach.
                         </p>
                     </motion.div>
@@ -84,7 +84,7 @@ export function FeaturedProjects() {
                                     <span className="text-green-500 text-sm font-semibold tracking-wider uppercase mb-2 block opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                                         {project.category}
                                     </span>
-                                    <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
+                                    <h3 className="text-2xl font-bold text-foreground mb-2">{project.title}</h3>
                                     <div className="w-0 h-0.5 bg-green-500 group-hover:w-16 transition-all duration-500 delay-200 mt-4" />
                                 </div>
                             </Link>

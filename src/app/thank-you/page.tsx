@@ -29,10 +29,10 @@ export default function ThankYouPage() {
         <div className="min-h-screen flex items-center justify-center bg-background relative overflow-hidden">
             {/* Ambient Background Elements */}
             <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-green-500/5 rounded-full blur-[120px] pointer-events-none animate-pulse" />
-            <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-white/5 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-muted/5 rounded-full blur-[120px] pointer-events-none" />
 
             {/* Grid Pattern Overlay */}
-            <div className="absolute inset-0 bg-[#0a0a0a] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] opacity-5 pointer-events-none" />
+            <div className="absolute inset-0 bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] opacity-5 pointer-events-none" />
 
             <div className="container mx-auto px-4 relative z-10">
                 <motion.div
@@ -41,7 +41,7 @@ export default function ThankYouPage() {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     className="max-w-2xl mx-auto"
                 >
-                    <div className="bg-card border border-white/10 rounded-3xl p-8 md:p-16 shadow-2xl backdrop-blur-3xl relative overflow-hidden">
+                    <div className="bg-card border border-border rounded-3xl p-8 md:p-16 shadow-2xl backdrop-blur-3xl relative overflow-hidden">
                         {/* Decorative Gradient Line */}
                         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent" />
 
@@ -62,10 +62,10 @@ export default function ThankYouPage() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4 }}
                             >
-                                <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 tracking-tighter uppercase font-sans">
+                                <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground mb-6 tracking-tighter uppercase font-sans">
                                     Mission <span className="text-green-500">Complete</span>
                                 </h1>
-                                <p className="text-white/70 text-lg md:text-xl font-light leading-relaxed mb-12 max-w-md mx-auto">
+                                <p className="text-muted-foreground text-lg md:text-xl font-light leading-relaxed mb-12 max-w-md mx-auto">
                                     Your request has been securely transmitted. A Notion Black specialist will contact you shortly to discuss your vision.
                                 </p>
                             </motion.div>
@@ -86,7 +86,7 @@ export default function ThankYouPage() {
                                             stroke="currentColor"
                                             strokeWidth="4"
                                             fill="transparent"
-                                            className="text-white/5"
+                                            className="text-muted-foreground/5"
                                         />
                                         <motion.circle
                                             cx="32"
@@ -103,9 +103,9 @@ export default function ThankYouPage() {
                                             strokeLinecap="round"
                                         />
                                     </svg>
-                                    <span className="absolute text-xl font-bold text-white font-mono">{countdown}</span>
+                                    <span className="absolute text-xl font-bold text-foreground font-mono">{countdown}</span>
                                 </div>
-                                <p className="text-xs uppercase tracking-[0.3em] text-white/30 font-semibold">
+                                <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground/30 font-semibold">
                                     Auto-returning to command post
                                 </p>
                             </motion.div>
@@ -127,7 +127,7 @@ export default function ThankYouPage() {
 
                                 <Link
                                     href="/#projects"
-                                    className="block mt-6 text-white/40 hover:text-white transition-colors text-xs font-semibold uppercase tracking-widest"
+                                    className="block mt-6 text-muted-foreground/40 hover:text-foreground transition-colors text-xs font-semibold uppercase tracking-widest"
                                 >
                                     View our work while you wait
                                 </Link>

@@ -19,12 +19,12 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
     }
 
     return (
-        <main className="min-h-screen bg-background text-white pb-24 pt-32">
+        <main className="min-h-screen bg-background text-foreground pb-24 pt-32">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Back Button */}
                 <Link
                     href="/#team"
-                    className="inline-flex items-center gap-2 text-white/60 hover:text-green-500 transition-colors mb-12 group"
+                    className="inline-flex items-center gap-2 text-muted-foreground/60 hover:text-green-500 transition-colors mb-12 group"
                 >
                     <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                     Back to Team
@@ -34,7 +34,7 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
                     {/* Left Column: Image and Role */}
                     <div className="lg:col-span-4">
                         <div className="sticky top-32">
-                            <div className="relative w-64 h-64 sm:w-80 sm:h-80 mx-auto lg:mx-0 lg:w-full lg:h-auto lg:aspect-square mb-8 rounded-full lg:rounded-3xl overflow-hidden ring-4 ring-white/5 shadow-2xl shadow-green-900/20">
+                            <div className="relative w-64 h-64 sm:w-80 sm:h-80 mx-auto lg:mx-0 lg:w-full lg:h-auto lg:aspect-square mb-8 rounded-full lg:rounded-3xl overflow-hidden ring-4 ring-border shadow-2xl shadow-green-900/20">
                                 <Image
                                     src={member.image}
                                     alt={member.name}
@@ -57,27 +57,27 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
                     <div className="lg:col-span-8 space-y-16 mt-8 lg:mt-0">
                         {/* Bio Section */}
                         <section>
-                            <h2 className="text-2xl font-bold mb-6 text-white/90 border-b border-white/10 pb-4">
+                            <h2 className="text-2xl font-bold mb-6 text-foreground border-b border-border pb-4">
                                 About
                             </h2>
-                            <p className="text-lg text-white/70 leading-relaxed">
+                            <p className="text-lg text-muted-foreground leading-relaxed">
                                 {member.bio}
                             </p>
                         </section>
 
                         {/* Responsibilities */}
                         <section>
-                            <h2 className="text-2xl font-bold mb-6 text-white/90 border-b border-white/10 pb-4 flex items-center gap-3">
+                            <h2 className="text-2xl font-bold mb-6 text-foreground border-b border-border pb-4 flex items-center gap-3">
                                 <Target className="w-6 h-6 text-green-500" />
                                 Core Responsibilities
                             </h2>
                             <ul className="space-y-4">
                                 {member.responsibilities.map((resp, index) => (
-                                    <li key={index} className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/5 hover:border-white/10 transition-colors">
+                                    <li key={index} className="flex items-start gap-4 p-4 rounded-xl bg-muted border border-border hover:border-green-500/30 transition-colors">
                                         <div className="mt-1 flex-shrink-0">
                                             <CheckCircle2 className="w-5 h-5 text-green-500" />
                                         </div>
-                                        <p className="text-white/80 leading-relaxed">{resp}</p>
+                                        <p className="text-muted-foreground leading-relaxed">{resp}</p>
                                     </li>
                                 ))}
                             </ul>
@@ -85,7 +85,7 @@ export default async function TeamMemberPage({ params }: { params: Promise<{ slu
 
                         {/* Technical Skills */}
                         <section>
-                            <h2 className="text-2xl font-bold mb-6 text-white/90 border-b border-white/10 pb-4">
+                            <h2 className="text-2xl font-bold mb-6 text-foreground border-b border-border pb-4">
                                 Technical Skills
                             </h2>
                             <div className="flex w-full flex-wrap gap-3">

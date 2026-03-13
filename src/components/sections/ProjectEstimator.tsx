@@ -87,26 +87,26 @@ export function ProjectEstimator() {
             <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="row align-items-center mb-12">
                     <div className="col-lg-6">
-                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
+                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
                             Project Estimator
                         </h2>
-                        <p className="text-white/70 text-lg max-w-2xl font-light">
+                        <p className="text-muted-foreground text-lg max-w-2xl font-light">
                             Explore project investment variables with immediate calculation accuracy directly on our platform.
                         </p>
                     </div>
                 </div>
 
-                <div className="relative border border-white/10 rounded-2xl bg-black/40 backdrop-blur-xl overflow-hidden shadow-2xl">
-                    <div className="absolute inset-0 bg-[url('/images/dot-grid.svg')] bg-center bg-repeat opacity-5 pointer-events-none" />
+                <div className="relative border border-border rounded-2xl bg-card/40 backdrop-blur-xl overflow-hidden shadow-2xl">
+                    <div className="absolute inset-0 bg-dot-grid bg-center bg-repeat opacity-5 pointer-events-none" />
 
                     <div className="grid lg:grid-cols-12 relative z-10">
                         {/* Input Section */}
-                        <div className="lg:col-span-7 p-8 md:p-12 lg:pr-16 border-b lg:border-b-0 lg:border-r border-white/10">
-                            <h3 className="text-xl font-semibold text-white mb-8">Configure Parameters</h3>
+                        <div className="lg:col-span-7 p-8 md:p-12 lg:pr-16 border-b lg:border-b-0 lg:border-r border-border">
+                            <h3 className="text-xl font-semibold text-foreground mb-8">Configure Parameters</h3>
 
                             {/* Service Type */}
                             <div className="mb-10">
-                                <label className="text-sm font-semibold text-white/50 tracking-widest uppercase mb-4 block">
+                                <label className="text-sm font-semibold text-muted-foreground tracking-widest uppercase mb-4 block">
                                     Project Type
                                 </label>
                                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -116,21 +116,21 @@ export function ProjectEstimator() {
                                             onClick={() => setProjectType(type.id)}
                                             className={`py-3 px-4 rounded-lg text-sm font-medium transition-all duration-200 border ${projectType === type.id
                                                 ? "bg-green-500/10 border-green-500 text-green-500"
-                                                : "bg-transparent border-white/10 text-white/70 hover:border-white/30 hover:text-white"
+                                                : "bg-transparent border-border text-muted-foreground hover:border-foreground/30 hover:text-foreground"
                                                 }`}
                                         >
                                             {type.short}
                                         </button>
                                     ))}
                                 </div>
-                                <div className="mt-3 text-sm text-white/40">
+                                <div className="mt-3 text-sm text-muted-foreground/40">
                                     {PROJECT_TYPES.find(t => t.id === projectType)?.label}
                                 </div>
                             </div>
 
                             {/* Project Scale */}
                             <div className="mb-10">
-                                <label className="text-sm font-semibold text-white/50 tracking-widest uppercase mb-4 block">
+                                <label className="text-sm font-semibold text-muted-foreground tracking-widest uppercase mb-4 block">
                                     Project Size (Square Metres)
                                 </label>
                                 <div className="flex items-center gap-4 mb-6 relative group">
@@ -138,11 +138,11 @@ export function ProjectEstimator() {
                                         type="number"
                                         value={sqm}
                                         onChange={(e) => setSqm(Number(e.target.value) || 0)}
-                                        className="w-32 bg-transparent text-5xl font-black text-white focus:outline-none placeholder:text-white/20 transition-all border-b border-transparent focus:border-green-500/50"
+                                        className="w-32 bg-transparent text-5xl font-black text-foreground focus:outline-none placeholder:text-muted-foreground/20 transition-all border-b border-transparent focus:border-green-500/50"
                                         min={1}
                                         max={10000}
                                     />
-                                    <span className="text-white/40 font-bold uppercase tracking-widest self-end pb-2">
+                                    <span className="text-muted-foreground/40 font-bold uppercase tracking-widest self-end pb-2">
                                         SQM
                                     </span>
                                 </div>
@@ -154,7 +154,7 @@ export function ProjectEstimator() {
                                     step={10}
                                     className="mb-3"
                                 />
-                                <div className="flex justify-between text-white/40 text-xs font-mono">
+                                <div className="flex justify-between text-muted-foreground/40 text-xs font-mono">
                                     <span>10 SQM</span>
                                     <span>5000 SQM</span>
                                 </div>
@@ -162,27 +162,27 @@ export function ProjectEstimator() {
 
                             {/* Operational Extensions (Addons) */}
                             <div className="mb-10">
-                                <label className="text-sm font-semibold text-white/50 tracking-widest uppercase mb-4 block">
+                                <label className="text-sm font-semibold text-muted-foreground tracking-widest uppercase mb-4 block">
                                     Additional Services
                                 </label>
                                 <div className="flex flex-wrap gap-3">
                                     <button
                                         onClick={() => setAddons((prev) => ({ ...prev, interior: !prev.interior }))}
-                                        className={`flex items-center gap-2 py-2 px-4 rounded-full text-sm font-medium border transition-colors ${addons.interior ? "bg-white text-black border-white" : "bg-transparent text-white/70 border-white/20 hover:border-white/40"
+                                        className={`flex items-center gap-2 py-2 px-4 rounded-full text-sm font-medium border transition-colors ${addons.interior ? "bg-primary text-primary-foreground border-primary" : "bg-transparent text-muted-foreground border-border hover:border-foreground/40"
                                             }`}
                                     >
                                         <Layout className="w-4 h-4" /> Interior Detailing
                                     </button>
                                     <button
                                         onClick={() => setAddons((prev) => ({ ...prev, landscape: !prev.landscape }))}
-                                        className={`flex items-center gap-2 py-2 px-4 rounded-full text-sm font-medium border transition-colors ${addons.landscape ? "bg-white text-black border-white" : "bg-transparent text-white/70 border-white/20 hover:border-white/40"
+                                        className={`flex items-center gap-2 py-2 px-4 rounded-full text-sm font-medium border transition-colors ${addons.landscape ? "bg-primary text-primary-foreground border-primary" : "bg-transparent text-muted-foreground border-border hover:border-foreground/40"
                                             }`}
                                     >
                                         <Trees className="w-4 h-4" /> Landscaping
                                     </button>
                                     <button
                                         onClick={() => setAddons((prev) => ({ ...prev, gameMode: !prev.gameMode }))}
-                                        className={`flex items-center gap-2 py-2 px-4 rounded-full text-sm font-medium border transition-colors ${addons.gameMode ? "bg-white text-black border-white" : "bg-transparent text-white/70 border-white/20 hover:border-white/40"
+                                        className={`flex items-center gap-2 py-2 px-4 rounded-full text-sm font-medium border transition-colors ${addons.gameMode ? "bg-primary text-primary-foreground border-primary" : "bg-transparent text-muted-foreground border-border hover:border-foreground/40"
                                             }`}
                                     >
                                         <Video className="w-4 h-4" /> VR Game Mode
@@ -192,16 +192,16 @@ export function ProjectEstimator() {
 
                             {/* Interactive Level Dropdown */}
                             <div>
-                                <label className="text-sm font-semibold text-white/50 tracking-widest uppercase mb-4 block">
+                                <label className="text-sm font-semibold text-muted-foreground tracking-widest uppercase mb-4 block">
                                     Interactive Level
                                 </label>
                                 <Select value={interactiveLevel} onValueChange={setInteractiveLevel}>
-                                    <SelectTrigger className="w-full sm:w-[350px] bg-black/50 border-white/20 text-white">
+                                    <SelectTrigger className="w-full sm:w-[350px] bg-background/50 border-border text-foreground">
                                         <SelectValue placeholder="Select Interactive Level" />
                                     </SelectTrigger>
-                                    <SelectContent className="bg-black border-white/20 text-white">
+                                    <SelectContent className="bg-card border-border text-foreground">
                                         {INTERACTIVE_LEVELS.map((level) => (
-                                            <SelectItem key={level.id} value={level.id} className="hover:bg-white/10 focus:bg-white/10 focus:text-white cursor-pointer data-[highlighted]:bg-white/20 data-[highlighted]:text-white">
+                                            <SelectItem key={level.id} value={level.id} className="cursor-pointer">
                                                 {level.label}
                                             </SelectItem>
                                         ))}
@@ -220,43 +220,43 @@ export function ProjectEstimator() {
                                     animate={{ opacity: 1, scale: 1 }}
                                     className="mb-10"
                                 >
-                                    <div className="text-white/50 tracking-widest uppercase text-sm font-semibold mb-2">
+                                    <div className="text-muted-foreground/50 tracking-widest uppercase text-sm font-semibold mb-2">
                                         Estimated Investment
                                     </div>
-                                    <div className="flex items-start text-white font-black leading-none">
+                                    <div className="flex items-start text-foreground font-black leading-none">
                                         <span className="text-2xl text-green-500 mt-2 mr-1">R</span>
                                         <span className="text-6xl sm:text-[70px] tabular-nums tracking-tight">{costs.total.toLocaleString()}</span>
                                     </div>
                                 </motion.div>
 
                                 <div className="space-y-4 mb-10 text-sm md:text-base">
-                                    <div className="flex justify-between items-center text-white/80 pb-3 border-b border-white/10">
+                                    <div className="flex justify-between items-center text-muted-foreground pb-3 border-b border-border">
                                         <span>Project Design</span>
                                         <span className="font-mono">R {costs.projectDesignCost.toLocaleString()}</span>
                                     </div>
 
                                     <AnimatePresence>
                                         {addons.interior && (
-                                            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="flex justify-between items-center text-white/80 pb-3 border-b border-white/10 overflow-hidden">
+                                            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="flex justify-between items-center text-muted-foreground pb-3 border-b border-border overflow-hidden">
                                                 <span>Interior Detailing</span>
                                                 <span className="font-mono text-green-400">R {costs.interiorCost.toLocaleString()}</span>
                                             </motion.div>
                                         )}
                                         {addons.landscape && (
-                                            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="flex justify-between items-center text-white/80 pb-3 border-b border-white/10 overflow-hidden">
+                                            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="flex justify-between items-center text-muted-foreground pb-3 border-b border-border overflow-hidden">
                                                 <span>Landscaping</span>
                                                 <span className="font-mono text-green-400">R {costs.landscapeCost.toLocaleString()}</span>
                                             </motion.div>
                                         )}
                                         {costs.interactiveCost > 0 && activeInteractiveLevel && (
-                                            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="flex justify-between items-center text-white/80 pb-3 border-b border-white/10 overflow-hidden">
+                                            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="flex justify-between items-center text-muted-foreground pb-3 border-b border-border overflow-hidden">
                                                 <span>{activeInteractiveLevel.label}</span>
                                                 <span className="font-mono text-green-400">R {costs.interactiveCost.toLocaleString()}</span>
                                             </motion.div>
                                         )}
                                         {addons.gameMode && (
-                                            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="flex justify-between items-center text-white/80 pb-3 border-b border-white/10 overflow-hidden">
-                                                <span className="text-white/80">VR Game Mode</span>
+                                            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="flex justify-between items-center text-muted-foreground pb-3 border-b border-border overflow-hidden">
+                                                <span className="text-muted-foreground">VR Game Mode</span>
                                                 <span className="font-mono text-green-400">R {costs.gameModeCost.toLocaleString()}</span>
                                             </motion.div>
                                         )}
@@ -267,7 +267,7 @@ export function ProjectEstimator() {
                             <Button
                                 onClick={handleDownloadRequest}
                                 size="lg"
-                                className="w-full h-14 bg-white text-black hover:bg-white/90 font-bold tracking-widest uppercase text-xs transition-colors"
+                                className="w-full h-14 bg-primary text-primary-foreground hover:bg-primary/90 font-bold tracking-widest uppercase text-xs transition-colors"
                             >
                                 <Download className="mr-2 h-4 w-4" /> Download
                             </Button>

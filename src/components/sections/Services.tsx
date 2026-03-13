@@ -37,7 +37,7 @@ const disciplines = [
 
 export function Services() {
     return (
-        <section id="services" className="py-24 bg-white/5 relative overflow-hidden">
+        <section id="services" className="py-24 bg-muted/30 relative overflow-hidden">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
 
@@ -49,8 +49,8 @@ export function Services() {
                         transition={{ duration: 0.8, ease: "easeOut" }}
                         className="lg:col-span-5 lg:sticky lg:top-32"
                     >
-                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">Our Disciplines</h2>
-                        <p className="text-lg text-white/70 leading-relaxed font-light mb-8">
+                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">Our Disciplines</h2>
+                        <p className="text-lg text-muted-foreground leading-relaxed font-light mb-8">
                             We believe in a holistic approach to design. By blending rigorous architectural structure with responsive digital frameworks, we produce cohesive brand experiences.
                         </p>
                         <Link
@@ -71,14 +71,14 @@ export function Services() {
                     >
                         <Accordion type="single" collapsible defaultValue="item-1" className="w-full space-y-4">
                             {disciplines.map((item) => (
-                                <AccordionItem key={item.id} value={item.id} className="border border-white/10 bg-background/50 backdrop-blur-sm rounded-none px-6">
-                                    <AccordionTrigger className="text-xl sm:text-2xl font-bold text-white hover:no-underline py-6 data-[state=open]:text-green-500 transition-colors">
+                                <AccordionItem key={item.id} value={item.id} className="border border-border bg-card/50 backdrop-blur-sm rounded-none px-6">
+                                    <AccordionTrigger className="text-xl sm:text-2xl font-bold text-foreground hover:no-underline py-6 data-[state=open]:text-green-500 transition-colors">
                                         {item.title}
                                     </AccordionTrigger>
                                     <AccordionContent className="pb-8">
-                                        <div className="grid sm:grid-cols-12 gap-8 items-center pt-4 border-t border-white/10">
+                                        <div className="grid sm:grid-cols-12 gap-8 items-center pt-4 border-t border-border">
                                             <div className="sm:col-span-5 relative aspect-[4/3] rounded-lg overflow-hidden group">
-                                                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10" />
+                                                <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors z-10" />
                                                 <Image
                                                     src={item.image}
                                                     alt={item.title}
@@ -87,8 +87,8 @@ export function Services() {
                                                 />
                                             </div>
                                             <div className="sm:col-span-7">
-                                                <strong className="block text-white mb-3 text-lg">{item.subtitle}</strong>
-                                                <p className="text-white/70 font-light leading-relaxed mb-6">
+                                                <strong className="block text-foreground mb-3 text-lg">{item.subtitle}</strong>
+                                                <p className="text-muted-foreground font-light leading-relaxed mb-6">
                                                     {item.description}
                                                 </p>
                                                 <Link

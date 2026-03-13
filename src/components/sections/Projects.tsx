@@ -42,14 +42,14 @@ export function Projects() {
     );
 
     return (
-        <section id="projects" className="py-24 bg-background/50 border-t border-white/5">
+        <section id="projects" className="py-24 bg-background/50 border-t border-border">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <span className="text-green-500 font-semibold tracking-wider uppercase text-sm border border-green-500/30 bg-green-500/10 px-4 py-1.5 rounded-full">
                         What we offer
                     </span>
-                    <h2 className="text-3xl sm:text-4xl font-bold mt-6 text-white">Our Services in Action</h2>
-                    <p className="mt-4 text-white/70 max-w-2xl mx-auto">
+                    <h2 className="text-3xl sm:text-4xl font-bold mt-6 text-foreground">Our Services in Action</h2>
+                    <p className="mt-4 text-muted-foreground max-w-2xl mx-auto">
                         Explore our diverse portfolio of architectural designs, interior concepts, and digital creations.
                     </p>
                 </div>
@@ -65,7 +65,7 @@ export function Projects() {
                     <CarouselContent className="-ml-2 md:-ml-4">
                         {projects.map((project, index) => (
                             <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                                <div className="group relative overflow-hidden rounded-2xl bg-card border border-white/10 h-[400px]">
+                                <div className="group relative overflow-hidden rounded-2xl bg-card border border-border h-[400px]">
                                     {/* Image Background */}
                                     <Image
                                         src={project.image}
@@ -79,10 +79,10 @@ export function Projects() {
 
                                     {/* Content */}
                                     <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                                        <h3 className="text-xl font-bold text-white mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                        <h3 className="text-xl font-bold text-foreground mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                                             {project.title}
                                         </h3>
-                                        <p className="text-white/70 text-sm mb-4 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 delay-75">
+                                        <p className="text-muted-foreground text-sm mb-4 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 delay-75">
                                             {project.description}
                                         </p>
                                         <Link
@@ -97,8 +97,8 @@ export function Projects() {
                         ))}
                     </CarouselContent>
                     <div className="hidden md:flex justify-end gap-2 mt-8">
-                        <CarouselPrevious className="position-relative translate-y-0 left-0 bg-white/5 border-white/10 text-white hover:bg-white/10" />
-                        <CarouselNext className="position-relative translate-y-0 right-0 bg-white/5 border-white/10 text-white hover:bg-white/10" />
+                        <CarouselPrevious className="position-relative translate-y-0 left-0 bg-muted border-border text-foreground hover:bg-muted/80" />
+                        <CarouselNext className="position-relative translate-y-0 right-0 bg-muted border-border text-foreground hover:bg-muted/80" />
                     </div>
                 </Carousel>
             </div>

@@ -29,7 +29,7 @@ function AnimatedCounter({ from, to }: { from: number; to: number }) {
 
 export function AboutStats() {
     return (
-        <section id="about" className="py-24 bg-background border-t border-white/5 relative">
+        <section id="about" className="py-24 bg-background border-t border-border relative">
             <div id="contact" className="absolute -top-24" /> {/* Hidden anchor for contact links */}
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-center">
@@ -48,10 +48,10 @@ export function AboutStats() {
                                     Welcome
                                 </span>
                             </div>
-                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
+                            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground leading-tight">
                                 Since we started work in <span className="text-green-500">2025</span>
                             </h2>
-                            <div className="space-y-4 text-white/70 text-lg leading-relaxed font-light">
+                            <div className="space-y-4 text-muted-foreground text-lg leading-relaxed font-light">
                                 <p>
                                     Notion Black is a creative design studio made up of a team of 7 designers,
                                     drafters, and digital creators dedicated to bringing modern design solutions
@@ -71,28 +71,28 @@ export function AboutStats() {
                         </div>
 
                         {/* Stats Section */}
-                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-white/10">
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-border">
                             <div className="flex flex-col items-start sm:items-center text-left sm:text-center">
                                 <AnimatedCounter from={0} to={1} />
-                                <span className="text-white/60 text-sm font-medium uppercase tracking-wider">
+                                <span className="text-muted-foreground text-sm font-medium uppercase tracking-wider">
                                     Years of<br />experience
                                 </span>
                             </div>
                             <div className="flex flex-col items-start sm:items-center text-left sm:text-center">
                                 <AnimatedCounter from={0} to={15} />
-                                <span className="text-white/60 text-sm font-medium uppercase tracking-wider">
+                                <span className="text-muted-foreground text-sm font-medium uppercase tracking-wider">
                                     Projects<br />Done
                                 </span>
                             </div>
                             <div className="flex flex-col items-start sm:items-center text-left sm:text-center">
                                 <AnimatedCounter from={0} to={7} />
-                                <span className="text-white/60 text-sm font-medium uppercase tracking-wider">
+                                <span className="text-muted-foreground text-sm font-medium uppercase tracking-wider">
                                     Our<br />Team
                                 </span>
                             </div>
                             <div className="flex flex-col items-start sm:items-center text-left sm:text-center">
                                 <AnimatedCounter from={0} to={10} />
-                                <span className="text-white/60 text-sm font-medium uppercase tracking-wider">
+                                <span className="text-muted-foreground text-sm font-medium uppercase tracking-wider">
                                     Happy<br />Customers
                                 </span>
                             </div>

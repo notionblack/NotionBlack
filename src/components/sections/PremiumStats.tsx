@@ -17,7 +17,7 @@ function AnimatedCounter({ from, to }: { from: number; to: number }) {
 
     return (
         <motion.span
-            className="text-6xl sm:text-7xl font-bold font-sans text-white block mb-4"
+            className="text-6xl sm:text-7xl font-bold font-sans text-foreground block mb-4"
             onViewportEnter={() => setInView(true)}
             viewport={{ once: true, margin: "-100px" }}
         >
@@ -28,7 +28,7 @@ function AnimatedCounter({ from, to }: { from: number; to: number }) {
 
 export function PremiumStats() {
     return (
-        <section className="py-24 bg-background border-t border-white/5 relative z-10">
+        <section className="py-24 bg-background border-t border-border relative z-10">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 relative">
 
@@ -38,14 +38,14 @@ export function PremiumStats() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.6 }}
-                        className="flex flex-col items-center justify-center p-8 bg-card border border-white/5 rounded-none relative overflow-hidden group hover:border-white/10 transition-colors z-10"
+                        className="flex flex-col items-center justify-center p-8 bg-card border border-border rounded-none relative overflow-hidden group hover:border-green-500/30 transition-colors z-10"
                     >
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-muted to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                         <div className="relative z-10 flex items-baseline">
                             <AnimatedCounter from={0} to={1} />
                             <span className="text-4xl sm:text-5xl font-bold text-green-500 ml-1 mb-4">+</span>
                         </div>
-                        <p className="text-sm font-semibold text-white/60 tracking-[0.2em] uppercase text-center w-full">
+                        <p className="text-sm font-semibold text-muted-foreground tracking-[0.2em] uppercase text-center w-full">
                             Projects Delivered
                         </p>
                     </motion.div>
@@ -73,14 +73,14 @@ export function PremiumStats() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
                         transition={{ duration: 0.6, delay: 0.4 }}
-                        className="flex flex-col items-center justify-center p-8 bg-card border border-white/5 rounded-none relative overflow-hidden group hover:border-white/10 transition-colors z-10"
+                        className="flex flex-col items-center justify-center p-8 bg-card border border-border rounded-none relative overflow-hidden group hover:border-green-500/30 transition-colors z-10"
                     >
-                        <div className="absolute inset-0 bg-gradient-to-bl from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-bl from-muted to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                         <div className="relative z-10 flex items-baseline">
                             <AnimatedCounter from={0} to={0} />
                             <span className="text-4xl sm:text-5xl font-bold text-green-500 ml-1 mb-4">+</span>
                         </div>
-                        <p className="text-sm font-semibold text-white/60 tracking-[0.2em] uppercase text-center w-full">
+                        <p className="text-sm font-semibold text-muted-foreground tracking-[0.2em] uppercase text-center w-full">
                             Years Experience
                         </p>
                     </motion.div>

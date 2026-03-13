@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
@@ -19,10 +20,13 @@ const navLinks = [
 
 export function Navbar() {
     const pathname = usePathname();
+    const { resolvedTheme } = useTheme();
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        setMounted(true);
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50);
         };
@@ -31,6 +35,10 @@ export function Navbar() {
     }, []);
 
     if (pathname === "/quote") return null;
+
+    const logoSrc = mounted && resolvedTheme === "light" 
+        ? "/images/logo_light_mode.png" 
+        : "/images/logo_final.png";
 
     return (
         <header
@@ -45,11 +53,11 @@ export function Navbar() {
                     <div className="flex-shrink-0">
                         <Link href="/" className="flex items-center gap-2">
                             <Image
-                                src="/images/logo_final.png"
+                                src={logoSrc}
                                 alt="Notion Black logo"
                                 width={64}
                                 height={64}
-                                className="w-16 h-16 object-contain dark:invert"
+                                className="w-16 h-16 object-contain"
                             />
                             <span className="text-xl font-bold tracking-tight text-foreground hidden sm:block">
                                 Notion Black
@@ -102,7 +110,7 @@ export function Navbar() {
                                 key={link.name}
                                 href={link.href}
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="block px-3 py-4 text-base font-medium text-foreground/90 hover:text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-md transition-colors"
+                                className="block px-3 py-4 text-base font-medium text-foreground/90 hover:text-foreground hover:bg-muted rounded-md transition-colors"
                             >
                                 {link.name}
                             </Link>
